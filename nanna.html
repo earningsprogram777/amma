@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Sphere · Dark Enterprise</title>
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== DARK MODE ENTERPRISE DESIGN SYSTEM ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Mode Core Colors */
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111117;
+            --bg-tertiary: #1a1a24;
+            --bg-card: #14141f;
+            --bg-input: #1e1e2a;
+            
+            /* Accent Colors - Neon Theme */
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #a78bfa;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-tertiary: #6b6b7b;
+            --text-muted: #4a4a5a;
+            
+            /* Borders & Effects */
+            --border-light: #2a2a35;
+            --border-medium: #3a3a48;
+            --glow-color: rgba(139, 92, 246, 0.3);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(145deg, #8b5cf6, #6366f1);
+            --gradient-glow: linear-gradient(145deg, rgba(139,92,246,0.2), rgba(99,102,241,0.2));
+            
+            /* Shadows */
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3);
+            --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.6);
+            --shadow-xl: 0 35px 60px -15px rgba(0,0,0,0.8);
+            --shadow-glow: 0 0 20px var(--glow-color);
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-2xl: 32px;
+            --radius-full: 9999px;
+            
+            /* Animations */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ===== LOGIN PAGE - DARK MODE ===== */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Grid Background */
+        .login-bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border-light) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            animation-delay: -5s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, 30px) scale(1.1); }
+        }
+
+        .login-card {
+            background: var(--bg-secondary);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: var(--radius-2xl);
+            width: 100%;
+            max-width: 440px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+            animation: cardReveal 0.8s ease-out;
+        }
+
+        @keyframes cardReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-logo {
+            width: 90px;
+            height: 90px;
+            background: var(--gradient-primary);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2.8rem;
+            box-shadow: var(--shadow-glow);
+            animation: logoGlow 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-logo::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 6s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            20%, 100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 0 30px var(--glow-color); }
+            50% { box-shadow: 0 0 50px var(--glow-color); }
+        }
+
+        .login-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-field-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            color: var(--text-tertiary);
+            font-size: 1.2rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--bg-input);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            font-size: 1rem;
+            transition: var(--transition);
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(139,92,246,0.2);
+        }
+
+        .input-field.error {
+            border-color: var(--danger);
+            animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translateX(-1px); }
+            20%, 80% { transform: translateX(2px); }
+            30%, 50%, 70% { transform: translateX(-4px); }
+            40%, 60% { transform: translateX(4px); }
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .login-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            padding: 1rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .error-message.show {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== MAIN DASHBOARD - DARK MODE ===== */
+        .main-container {
+            display: none;
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+
+        .main-container.authenticated {
+            display: block;
+        }
+
+        /* Premium Navigation - Glassmorphism */
+        .nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid var(--border-light);
+            animation: navSlide 0.8s ease-out;
+        }
+
+        @keyframes navSlide {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .user-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.6rem 1.2rem 0.6rem 0.6rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-light);
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .user-status {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+        }
+
+        .logout-btn {
+            padding: 0.6rem 1.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn:hover {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1600px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--gradient-glow);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--radius-2xl);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-xl);
+            backdrop-filter: blur(10px);
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .quick-item {
+            background: var(--bg-tertiary);
+            padding: 1.2rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .quick-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-glow);
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .quick-item i {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Category Section */
+        .category-section {
+            max-width: 1600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header h2 i {
+            color: var(--primary);
+        }
+
+        .category-counter {
+            background: var(--bg-tertiary);
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border: 1px solid var(--border-light);
+        }
+
+        .tabs-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--bg-tertiary);
+        }
+
+        .tabs-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tabs-scroll::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-full);
+        }
+
+        .tabs-scroll::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: var(--radius-full);
+        }
+
+        .tab {
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .tab:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            color: var(--text-primary);
+        }
+
+        .tab.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+            display: none;
+        }
+
+        .cards-grid.active {
+            display: block;
+        }
+
+        .card-collection {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            animation: cardAppear 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card-glow {
+            height: 4px;
+            background: var(--gradient-primary);
+            width: 0;
+            transition: width 0.5s ease-out;
+        }
+
+        .resource-card:hover .card-glow {
+            width: 100%;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .card-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-header h3 i {
+            color: var(--primary);
+        }
+
+        .card-badge {
+            background: var(--bg-tertiary);
+            padding: 0.3rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .link-item:hover {
+            background: var(--bg-secondary);
+            border-color: var(--border-light);
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--primary);
+            border: 1px solid var(--border-light);
+        }
+
+        .link-details {
+            flex: 1;
+        }
+
+        .link-title {
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .link-meta {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Footer */
+        .footer {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-tertiary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Loading State */
+        .loading-container {
+            text-align: center;
+            padding: 4rem;
+        }
+
+        .loader {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-light);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero p {
+                margin: 0 auto 2.5rem;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .quick-grid {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .card-collection {
+                grid-template-columns: 1fr;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .quick-grid {
+                grid-template-columns: 1fr;
+            }
+            .tabs-scroll {
+                padding-bottom: 10px;
+            }
+            .tab {
+                padding: 0.6rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN PAGE - DARK MODE -->
+    <div class="login-container" id="loginPage">
+        <div class="login-bg-grid"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-cubes"></i>
+                </div>
+                <h1>Skill Sphere</h1>
+                <p>Dark Enterprise · Secure Access</p>
+            </div>
+            
+            <div class="error-message" id="loginError">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Invalid phone number or password</span>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Phone Number</label>
+                <div class="input-field-wrapper">
+                    <i class="fas fa-phone-alt input-icon"></i>
+                    <input type="tel" class="input-field" id="loginPhone" placeholder="Enter your phone number">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Password</label>
+                <div class="input-field-wrapper">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" class="input-field" id="loginPassword" placeholder="Enter your password">
+                </div>
+            </div>
+            
+            <button class="login-btn" id="loginBtn">
+                <i class="fas fa-shield-alt"></i> Authenticate
+            </button>
+            
+            <div style="text-align: center; margin-top: 2rem; color: var(--text-tertiary); font-size: 0.85rem;">
+                <i class="fas fa-shield"></i> End-to-end encrypted
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD (HIDDEN UNTIL LOGIN) -->
+    <div class="main-container" id="mainDashboard">
+        <!-- Navigation -->
+        <div class="nav-wrapper">
+            <div class="navbar">
+                <div class="logo-group">
+                    <div class="logo-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">Skill Sphere</div>
+                        <div style="font-size: 0.7rem; color: var(--text-tertiary);">dark mode · enterprise</div>
+                    </div>
+                </div>
+                <div class="user-menu">
+                    <div class="user-badge">
+                        <div class="user-avatar" id="userAvatar">U</div>
+                        <div class="user-info">
+                            <span class="user-name" id="displayUserPhone"></span>
+                            <span class="user-status">authenticated</span>
+                        </div>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Exit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i> Verified Session · Sensitive Data Hidden
+                </div>
+                <h1>
+                    Secure <span class="gradient-text">Resource</span><br>
+                    Command Center
+                </h1>
+                <p>
+                    Access your learning resources, books, tools, and notes. 
+                    Phone numbers, referral codes, and passwords are automatically hidden for security.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="totalLinksCount">0</span>
+                        <span class="stat-label">Resources</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="hiddenCount">3</span>
+                        <span class="stat-label">Hidden</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="quick-grid" id="quickAccess">
+                    <!-- Quick access will be populated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="category-section">
+            <div class="section-header">
+                <h2>
+                    <i class="fas fa-compass"></i>
+                    Resource Categories
+                </h2>
+                <div class="category-counter" id="activeCategoryCount">15 categories</div>
+            </div>
+            <div class="tabs-scroll" id="categoryTabs">
+                <!-- Tabs will be populated -->
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-container" style="display: none;">
+            <div class="loader"></div>
+            <p style="margin-top: 1rem; color: var(--text-secondary);">Loading secure resources...</p>
+        </div>
+
+        <!-- Cards Grid Container -->
+        <div id="cardsGridContainer"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div>© 2026 Skill Sphere · Dark Enterprise Edition</div>
+            <div class="footer-links">
+                <span><i class="fas fa-shield-alt"></i> AES-256</span>
+                <span><i class="fas fa-eye-slash"></i> 3 Hidden Categories</span>
+                <span><i class="fas fa-sync-alt"></i> Live Sync</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ===== ENTERPRISE AUTHENTICATION SYSTEM =====
+        // Sheet configuration
+        const SHEET_CONFIG = {
+            spreadsheetId: '1mJlxCazF9xaszf2QiX7_ysYhYKLsJk3aOmkMA4-wOvk',
+            range: 'A1:R50',
+            categories: [
+                'HTML', 'CSS', 'JavaScript', 'Python', 'Skills',
+                'Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5', 'All Books',
+                'Programming', 'Other Tools', 'Editing', 'Stock Market', 'Notes',
+                'Referral Code', 'Phone Number', 'Password'
+            ],
+            // Categories to hide completely
+            hiddenCategories: ['Referral Code', 'Phone Number', 'Password']
+        };
+
+        // Category metadata
+        const CATEGORY_META = {
+            'HTML': { icon: 'fab fa-html5', color: '#f97316' },
+            'CSS': { icon: 'fab fa-css3-alt', color: '#3b82f6' },
+            'JavaScript': { icon: 'fab fa-js', color: '#eab308' },
+            'Python': { icon: 'fab fa-python', color: '#22c55e' },
+            'Skills': { icon: 'fas fa-code-branch', color: '#8b5cf6' },
+            'Book 1': { icon: 'fas fa-book', color: '#ec4899' },
+            'Book 2': { icon: 'fas fa-book-open', color: '#14b8a6' },
+            'Book 3': { icon: 'fas fa-book-reader', color: '#f97316' },
+            'Book 4': { icon: 'fas fa-bookmark', color: '#6b7280' },
+            'Book 5': { icon: 'fas fa-book-medical', color: '#ef4444' },
+            'All Books': { icon: 'fas fa-books', color: '#8b5cf6' },
+            'Programming': { icon: 'fas fa-laptop-code', color: '#059669' },
+            'Other Tools': { icon: 'fas fa-tools', color: '#4b5563' },
+            'Editing': { icon: 'fas fa-pen-fancy', color: '#d97706' },
+            'Stock Market': { icon: 'fas fa-chart-line', color: '#10b981' },
+            'Notes': { icon: 'fas fa-sticky-note', color: '#6b7280' },
+            'Referral Code': { icon: 'fas fa-gift', color: '#7c3aed' },
+            'Phone Number': { icon: 'fas fa-phone-alt', color: '#dc2626' },
+            'Password': { icon: 'fas fa-key', color: '#b91c1c' }
+        };
+
+        // Global state
+        let authenticatedUser = null;
+        let sheetData = null;
+        let linksData = {};
+        let currentCategory = 'HTML';
+        let phonePasswordMap = {}; // Will store phone -> password mapping
+
+        // DOM Elements
+        const loginPage = document.getElementById('loginPage');
+        const mainDashboard = document.getElementById('mainDashboard');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginPhone = document.getElementById('loginPhone');
+        const loginPassword = document.getElementById('loginPassword');
+        const loginError = document.getElementById('loginError');
+        const displayUserPhone = document.getElementById('displayUserPhone');
+        const userAvatar = document.getElementById('userAvatar');
+        const categoryTabsEl = document.getElementById('categoryTabs');
+        const cardsGridContainer = document.getElementById('cardsGridContainer');
+        const loadingEl = document.getElementById('loadingState');
+        const totalLinksEl = document.getElementById('totalLinksCount');
+        const quickAccessEl = document.getElementById('quickAccess');
+
+        // Initialize - Load sheet data first
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSheetData();
+        });
+
+        // Load sheet data for authentication
+        async function loadSheetData() {
+            try {
+                const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_CONFIG.spreadsheetId}/export?format=csv&gid=0`;
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                const rows = csvText.split('\n').map(row => 
+                    row.split(',').map(cell => cell.replace(/^"|"$/g, '').trim())
+                );
+                
+                sheetData = rows;
+                buildPhonePasswordMap(rows);
+                processSheetData(rows);
+                
+            } catch (error) {
+                console.error('Failed to load sheet:', error);
+            }
+        }
+
+        // Build phone-password mapping for authentication
+        function buildPhonePasswordMap(rows) {
+            const headers = rows[0] || [];
+            const phoneColIndex = headers.findIndex(h => 
+                h.toLowerCase().includes('phone') || h.toLowerCase().includes('mobile')
+            );
+            const passwordColIndex = headers.findIndex(h => 
+                h.toLowerCase().includes('password') || h.toLowerCase().includes('pass')
+            );
+            
+            if (phoneColIndex === -1 || passwordColIndex === -1) return;
+            
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const phone = row[phoneColIndex] ? row[phoneColIndex].trim() : '';
+                const password = row[passwordColIndex] ? row[passwordColIndex].trim() : '';
+                
+                if (phone && password) {
+                    phonePasswordMap[phone] = password;
+                }
+            }
+        }
+
+        // Process sheet data for display
+        function processSheetData(rows) {
+            // Initialize data structure (excluding hidden categories)
+            const visibleCategories = SHEET_CONFIG.categories.filter(
+                cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
+            );
+            visibleCategories.forEach(cat => linksData[cat] = []);
+            
+            const headers = rows[0] || [];
+            
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                if (!row || row.length === 0) continue;
+                
+                headers.forEach((header, colIndex) => {
+                    if (!header) return;
+                    
+                    const cellValue = row[colIndex] ? row[colIndex].trim() : '';
+                    if (!cellValue) return;
+                    
+                    const category = mapHeaderToCategory(header);
+                    // Only include if category is visible (not hidden)
+                    if (category && linksData[category] && !SHEET_CONFIG.hiddenCategories.includes(category)) {
+                        linksData[category].push({
+                            value: cellValue,
+                            type: isValidUrl(cellValue) ? 'link' : 'text',
+                            title: generateDisplayText(cellValue),
+                            source: isValidUrl(cellValue) ? extractSource(cellValue) : 'data'
+                        });
+                    }
+                });
+            }
+            
+            // Special handling for "All Books"
+            const bookCategories = ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5'];
+            const allBooksSet = new Map();
+            bookCategories.forEach(cat => {
+                if (linksData[cat]) {
+                    (linksData[cat] || []).forEach(item => {
+                        if (!allBooksSet.has(item.value)) {
+                            allBooksSet.set(item.value, item);
+                        }
+                    });
+                }
+            });
+            linksData['All Books'] = Array.from(allBooksSet.values());
+            
+            // Update total count
+            const total = Object.values(linksData).flat().length;
+            totalLinksEl.textContent = total;
+        }
+
+        // ===== LOGIN HANDLER =====
+        loginBtn.addEventListener('click', handleLogin);
+        
+        [loginPhone, loginPassword].forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleLogin();
+            });
+        });
+
+        function handleLogin() {
+            const phone = loginPhone.value.trim();
+            const password = loginPassword.value;
+            
+            // Check if phone exists and password matches
+            if (phonePasswordMap[phone] && phonePasswordMap[phone] === password) {
+                // Successful login
+                authenticatedUser = phone;
+                displayUserPhone.textContent = maskPhone(phone);
+                userAvatar.textContent = phone.slice(-2);
+                
+                // Hide login, show dashboard
+                loginPage.style.display = 'none';
+                mainDashboard.classList.add('authenticated');
+                
+                // Initialize dashboard
+                initializeDashboard();
+            } else {
+                // Show error
+                loginError.classList.add('show');
+                loginPhone.classList.add('error');
+                loginPassword.classList.add('error');
+                
+                setTimeout(() => {
+                    loginPhone.classList.remove('error');
+                    loginPassword.classList.remove('error');
+                }, 500);
+            }
+        }
+
+        function maskPhone(phone) {
+            if (phone.length >= 10) {
+                return phone.slice(0, 2) + '****' + phone.slice(-4);
+            }
+            return phone;
+        }
+
+        logoutBtn.addEventListener('click', () => {
+            authenticatedUser = null;
+            mainDashboard.classList.remove('authenticated');
+            loginPage.style.display = 'flex';
+            loginPhone.value = '';
+            loginPassword.value = '';
+            loginError.classList.remove('show');
+        });
+
+        // ===== DASHBOARD INITIALIZATION =====
+        function initializeDashboard() {
+            renderQuickAccess();
+            renderCategoryTabs();
+            renderAllCategories();
+        }
+
+        function renderQuickAccess() {
+            const topCategories = ['HTML', 'CSS', 'JavaScript', 'Python', 'All Books', 'Programming'];
+            quickAccessEl.innerHTML = '';
+            
+            topCategories.forEach(cat => {
+                const meta = CATEGORY_META[cat] || { icon: 'fas fa-link' };
+                const item = document.createElement('div');
+                item.className = 'quick-item';
+                item.innerHTML = `<i class="${meta.icon}"></i><span>${cat}</span>`;
+                item.addEventListener('click', () => {
+                    const targetTab = Array.from(document.querySelectorAll('.tab')).find(t => t.dataset.category === cat);
+                    if(targetTab) targetTab.click();
+                });
+                quickAccessEl.appendChild(item);
+            });
+        }
+
+        function renderCategoryTabs() {
+            const visibleCategories = SHEET_CONFIG.categories.filter(
+                cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
+            );
+            
+            categoryTabsEl.innerHTML = '';
+            
+            visibleCategories.forEach((cat, index) => {
+                const meta = CATEGORY_META[cat] || { icon: 'fas fa-folder' };
+                const tab = document.createElement('div');
+                tab.className = `tab ${cat === currentCategory ? 'active' : ''}`;
+                tab.dataset.category = cat;
+                tab.style.animation = `fadeIn 0.3s ease-out ${index * 0.02}s both`;
+                tab.innerHTML = `<i class="${meta.icon}"></i><span>${cat}</span>`;
+                
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentCategory = cat;
+                    switchCategory(cat);
+                });
+                
+                categoryTabsEl.appendChild(tab);
+            });
+        }
+
+        function renderAllCategories() {
+            const visibleCategories = SHEET_CONFIG.categories.filter(
+                cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
+            );
+            
+            visibleCategories.forEach(category => {
+                let gridId = `grid-${category.replace(/\s+/g, '')}`;
+                let targetGrid = document.getElementById(gridId);
+                
+                if (!targetGrid) {
+                    targetGrid = document.createElement('div');
+                    targetGrid.className = 'cards-grid';
+                    targetGrid.id = gridId;
+                    targetGrid.dataset.category = category;
+                    cardsGridContainer.appendChild(targetGrid);
+                }
+                
+                renderCategoryGrid(targetGrid, category);
+            });
+            
+            // Show first category
+            switchCategory(currentCategory);
+        }
+
+        function switchCategory(category) {
+            document.querySelectorAll('.cards-grid').forEach(g => g.classList.remove('active'));
+            
+            const gridId = `grid-${category.replace(/\s+/g, '')}`;
+            const targetGrid = document.getElementById(gridId);
+            if (targetGrid) {
+                targetGrid.classList.add('active');
+            }
+        }
+
+        function renderCategoryGrid(gridElement, category) {
+            const items = linksData[category] || [];
+            const meta = CATEGORY_META[category] || { icon: 'fas fa-folder' };
+            
+            if (items.length === 0) {
+                gridElement.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-box-open"></i>
+                        <h3 style="margin: 1rem 0;">No items in ${category}</h3>
+                        <p style="color: var(--text-secondary);">Add items to your Google Sheet</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Group items into cards (max 5 per card)
+            const itemsPerCard = 5;
+            const chunks = [];
+            for (let i = 0; i < items.length; i += itemsPerCard) {
+                chunks.push(items.slice(i, i + itemsPerCard));
+            }
+            
+            let cardsHtml = '';
+            chunks.forEach((chunk, idx) => {
+                const startIdx = idx * itemsPerCard + 1;
+                const endIdx = Math.min(startIdx + chunk.length - 1, items.length);
+                
+                let itemsHtml = '';
+                chunk.forEach(item => {
+                    const isLink = item.type === 'link';
+                    
+                    itemsHtml += isLink ? 
+                        `<a href="${item.value}" target="_blank" class="link-item">
+                            <div class="link-icon"><i class="fas fa-external-link-alt"></i></div>
+                            <div class="link-details">
+                                <div class="link-title">${item.title}</div>
+                                <div class="link-meta">${item.source}</div>
+                            </div>
+                        </a>` :
+                        `<div class="link-item" style="cursor: default;">
+                            <div class="link-icon"><i class="fas fa-database"></i></div>
+                            <div class="link-details">
+                                <div class="link-title">${item.title}</div>
+                                <div class="link-meta">internal data</div>
+                            </div>
+                        </div>`;
+                });
+                
+                cardsHtml += `
+                    <div class="resource-card" style="animation-delay: ${idx * 0.1}s">
+                        <div class="card-glow"></div>
+                        <div class="card-header">
+                            <h3>
+                                <i class="${meta.icon}"></i>
+                                ${category}
+                            </h3>
+                            <div class="card-badge">${startIdx}-${endIdx}</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="link-list">
+                                ${itemsHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            gridElement.innerHTML = `<div class="card-collection">${cardsHtml}</div>`;
+        }
+
+        // Helper functions
+        function mapHeaderToCategory(header) {
+            const h = header.toLowerCase().trim();
+            
+            if (h.includes('html')) return 'HTML';
+            if (h.includes('css')) return 'CSS';
+            if (h.includes('js') || h.includes('javascript')) return 'JavaScript';
+            if (h.includes('python')) return 'Python';
+            if (h.includes('skill')) return 'Skills';
+            if (h.includes('book1') || h.includes('book 1')) return 'Book 1';
+            if (h.includes('book2') || h.includes('book 2')) return 'Book 2';
+            if (h.includes('book3') || h.includes('book 3')) return 'Book 3';
+            if (h.includes('book4') || h.includes('book 4')) return 'Book 4';
+            if (h.includes('book5') || h.includes('book 5')) return 'Book 5';
+            if (h.includes('all books')) return 'All Books';
+            if (h.includes('programming')) return 'Programming';
+            if (h.includes('other') || h.includes('tools')) return 'Other Tools';
+            if (h.includes('edit')) return 'Editing';
+            if (h.includes('stock')) return 'Stock Market';
+            if (h.includes('note')) return 'Notes';
+            if (h.includes('referral')) return 'Referral Code';
+            if (h.includes('phone')) return 'Phone Number';
+            if (h.includes('password')) return 'Password';
+            
+            return null;
+        }
+
+        function isValidUrl(str) {
+            try { new URL(str); return true; } catch { return false; }
+        }
+
+        function extractSource(url) {
+            try {
+                const host = new URL(url).hostname;
+                if (host.includes('w3schools')) return 'W3Schools';
+                if (host.includes('geeksforgeeks')) return 'GeeksforGeeks';
+                if (host.includes('mozilla')) return 'MDN';
+                if (host.includes('youtube')) return 'YouTube';
+                if (host.includes('python.org')) return 'Python.org';
+                if (host.includes('analyticsvidhya')) return 'Analytics Vidhya';
+                if (host.includes('drive.google')) return 'Google Drive';
+                return host.replace('www.', '').split('.')[0];
+            } catch {
+                return 'link';
+            }
+        }
+
+        function generateDisplayText(value) {
+            if (isValidUrl(value)) {
+                try {
+                    const url = new URL(value);
+                    if (url.hostname.includes('youtube')) {
+                        const videoId = url.searchParams.get('v') || url.pathname.split('/').pop();
+                        return `YouTube: ${videoId}`;
+                    }
+                    const path = url.pathname.split('/').filter(p => p).pop() || '';
+                    return decodeURIComponent(path.replace(/[-_]/g, ' ')) || url.hostname;
+                } catch {
+                    return value.slice(0, 30);
+                }
+            }
+            return value;
+        }
+    </script>
+</body>
+</html>
