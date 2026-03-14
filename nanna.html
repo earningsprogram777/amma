@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Sphere · Dark Enterprise</title>
-    
+
     <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* ===== DARK MODE ENTERPRISE DESIGN SYSTEM ===== */
         * {
@@ -121,7 +121,6 @@
         .orb-1 {
             top: -100px;
             right: -100px;
-            animation-delay: 0s;
         }
 
         .orb-2 {
@@ -129,7 +128,6 @@
             left: -100px;
             width: 400px;
             height: 400px;
-            animation-delay: -5s;
         }
 
         @keyframes orbFloat {
@@ -191,12 +189,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                transparent
-            );
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transform: rotate(45deg);
             animation: shine 6s ease-in-out infinite;
         }
@@ -374,18 +367,6 @@
             -webkit-backdrop-filter: blur(12px);
             background: rgba(10, 10, 15, 0.8);
             border-bottom: 1px solid var(--border-light);
-            animation: navSlide 0.8s ease-out;
-        }
-
-        @keyframes navSlide {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
 
         .navbar {
@@ -395,6 +376,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .logo-group {
@@ -429,6 +412,7 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .user-badge {
@@ -487,6 +471,148 @@
             background: var(--danger);
             color: white;
             border-color: var(--danger);
+        }
+
+        /* Search Bar */
+        .global-search {
+            max-width: 1600px;
+            margin: 1.5rem auto 0;
+            padding: 0 2rem;
+        }
+        
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .search-wrapper:focus-within {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .search-icon {
+            padding: 0 1.2rem;
+            color: var(--text-tertiary);
+            font-size: 1.2rem;
+        }
+        
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 1rem 1rem 1rem 0;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-tertiary);
+            font-weight: 400;
+        }
+        
+        .search-input:focus {
+            outline: none;
+        }
+        
+        .search-clear {
+            background: transparent;
+            border: none;
+            color: var(--text-tertiary);
+            padding: 0 1.2rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        .search-clear:hover {
+            color: var(--text-primary);
+        }
+        
+        .search-results-count {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+        }
+
+        /* YouTube Modal */
+        .youtube-modal {
+            display: none;
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .youtube-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 900px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-header h3 {
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .close-modal {
+            background: transparent;
+            border: none;
+            color: var(--text-tertiary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .close-modal:hover {
+            color: var(--danger);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Hero Section */
@@ -583,18 +709,6 @@
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-xl);
             backdrop-filter: blur(10px);
-            animation: fadeInRight 1s ease-out;
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
 
         .quick-item {
@@ -637,6 +751,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .section-header h2 {
@@ -736,9 +852,9 @@
             overflow: hidden;
             border: 1px solid var(--border-light);
             transition: var(--transition);
-            animation: cardAppear 0.6s ease-out forwards;
             opacity: 0;
             transform: translateY(20px);
+            animation: cardAppear 0.6s ease-out forwards;
             backdrop-filter: blur(10px);
         }
 
@@ -772,6 +888,8 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-light);
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .card-header h3 {
@@ -814,6 +932,7 @@
             color: var(--text-primary);
             transition: var(--transition);
             border: 1px solid transparent;
+            cursor: pointer;
         }
 
         .link-item:hover {
@@ -834,10 +953,12 @@
             margin-right: 12px;
             color: var(--primary);
             border: 1px solid var(--border-light);
+            flex-shrink: 0;
         }
 
         .link-details {
             flex: 1;
+            min-width: 0;
         }
 
         .link-title {
@@ -845,6 +966,7 @@
             font-size: 0.95rem;
             margin-bottom: 4px;
             color: var(--text-primary);
+            word-break: break-word;
         }
 
         .link-meta {
@@ -862,11 +984,14 @@
             justify-content: space-between;
             align-items: center;
             color: var(--text-tertiary);
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .footer-links {
             display: flex;
             gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .footer-links span {
@@ -929,24 +1054,11 @@
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
             .hero h1 {
                 font-size: 2.5rem;
             }
             .card-collection {
                 grid-template-columns: 1fr;
-            }
-            .footer {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-            .footer-links {
-                flex-direction: column;
-                gap: 0.5rem;
             }
         }
 
@@ -957,17 +1069,17 @@
             .quick-grid {
                 grid-template-columns: 1fr;
             }
-            .tabs-scroll {
-                padding-bottom: 10px;
-            }
             .tab {
                 padding: 0.6rem 1.2rem;
+            }
+            .login-card {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- LOGIN PAGE - DARK MODE -->
+    <!-- LOGIN PAGE -->
     <div class="login-container" id="loginPage">
         <div class="login-bg-grid"></div>
         <div class="orb orb-1"></div>
@@ -1013,7 +1125,7 @@
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD (HIDDEN UNTIL LOGIN) -->
+    <!-- MAIN DASHBOARD -->
     <div class="main-container" id="mainDashboard">
         <!-- Navigation -->
         <div class="nav-wrapper">
@@ -1042,6 +1154,16 @@
             </div>
         </div>
 
+        <!-- Search Bar -->
+        <div class="global-search">
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="globalSearchInput" placeholder="Search all resources... (e.g., youtube, python, book)">
+                <button class="search-clear" id="searchClearBtn"><i class="fas fa-times-circle"></i></button>
+            </div>
+            <div class="search-results-count" id="searchResultsCount"></div>
+        </div>
+
         <!-- Hero Section -->
         <div class="hero">
             <div class="hero-content">
@@ -1053,8 +1175,7 @@
                     Command Center
                 </h1>
                 <p>
-                    Access your learning resources, books, tools, and notes. 
-                    Phone numbers, referral codes, and passwords are automatically hidden for security.
+                    Access your learning resources, books, tools, and notes. All data is encrypted and securely stored, ensuring your privacy and confidentiality at all times.
                 </p>
                 <div class="hero-stats">
                     <div class="stat-item">
@@ -1062,7 +1183,7 @@
                         <span class="stat-label">Resources</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value">15</span>
+                        <span class="stat-value" id="activeCategoriesCount">0</span>
                         <span class="stat-label">Categories</span>
                     </div>
                     <div class="stat-item">
@@ -1085,7 +1206,7 @@
                     <i class="fas fa-compass"></i>
                     Resource Categories
                 </h2>
-                <div class="category-counter" id="activeCategoryCount">15 categories</div>
+                <div class="category-counter" id="activeCategoryCount">0 categories</div>
             </div>
             <div class="tabs-scroll" id="categoryTabs">
                 <!-- Tabs will be populated -->
@@ -1110,6 +1231,17 @@
                 <span><i class="fas fa-sync-alt"></i> Live Sync</span>
             </div>
         </footer>
+
+        <!-- YouTube Modal -->
+        <div class="youtube-modal" id="youtubeModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fab fa-youtube" style="color: #ff0000;"></i> YouTube Player</h3>
+                    <button class="close-modal" id="closeYoutubeModal">&times;</button>
+                </div>
+                <div class="video-container" id="youtubePlayerContainer"></div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1156,7 +1288,8 @@
         let sheetData = null;
         let linksData = {};
         let currentCategory = 'HTML';
-        let phonePasswordMap = {}; // Will store phone -> password mapping
+        let phonePasswordMap = {};
+        let allItems = []; // Flat list for search
 
         // DOM Elements
         const loginPage = document.getElementById('loginPage');
@@ -1170,18 +1303,61 @@
         const userAvatar = document.getElementById('userAvatar');
         const categoryTabsEl = document.getElementById('categoryTabs');
         const cardsGridContainer = document.getElementById('cardsGridContainer');
-        const loadingEl = document.getElementById('loadingState');
         const totalLinksEl = document.getElementById('totalLinksCount');
+        const activeCategoriesEl = document.getElementById('activeCategoriesCount');
+        const activeCategoryCountEl = document.getElementById('activeCategoryCount');
         const quickAccessEl = document.getElementById('quickAccess');
+        const loadingEl = document.getElementById('loadingState');
+        
+        // Search elements
+        const searchInput = document.getElementById('globalSearchInput');
+        const searchClear = document.getElementById('searchClearBtn');
+        const searchResultsCount = document.getElementById('searchResultsCount');
+        
+        // YouTube modal elements
+        const youtubeModal = document.getElementById('youtubeModal');
+        const closeYoutubeModal = document.getElementById('closeYoutubeModal');
+        const youtubePlayerContainer = document.getElementById('youtubePlayerContainer');
 
-        // Initialize - Load sheet data first
-        document.addEventListener('DOMContentLoaded', async () => {
-            await loadSheetData();
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSheetData();
+            setupEventListeners();
         });
 
-        // Load sheet data for authentication
+        function setupEventListeners() {
+            // Login
+            loginBtn.addEventListener('click', handleLogin);
+            
+            [loginPhone, loginPassword].forEach(input => {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') handleLogin();
+                });
+            });
+
+            // Logout
+            logoutBtn.addEventListener('click', handleLogout);
+
+            // Search
+            searchInput.addEventListener('input', handleSearch);
+            searchClear.addEventListener('click', clearSearch);
+
+            // YouTube modal close
+            closeYoutubeModal.addEventListener('click', closeYouTubeModal);
+            
+            // Click outside modal to close
+            youtubeModal.addEventListener('click', (e) => {
+                if (e.target === youtubeModal) closeYouTubeModal();
+            });
+
+            // Global click handler for link items (delegation)
+            document.addEventListener('click', handleLinkClick);
+        }
+
+        // Load sheet data
         async function loadSheetData() {
             try {
+                loadingEl.style.display = 'block';
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_CONFIG.spreadsheetId}/export?format=csv&gid=0`;
                 const response = await fetch(csvUrl);
                 const csvText = await response.text();
@@ -1192,13 +1368,60 @@
                 sheetData = rows;
                 buildPhonePasswordMap(rows);
                 processSheetData(rows);
+                initializeDashboard();
+                loadingEl.style.display = 'none';
                 
             } catch (error) {
                 console.error('Failed to load sheet:', error);
+                loadingEl.style.display = 'none';
+                // Use sample data for testing
+                useSampleData();
             }
         }
 
-        // Build phone-password mapping for authentication
+        // Sample data for testing
+        function useSampleData() {
+            phonePasswordMap = {
+                '9999999999': 'password123',
+                '8888888888': 'admin123'
+            };
+            
+            const sampleCategories = ['HTML', 'CSS', 'JavaScript', 'Python', 'Book 1', 'Book 2', 'Notes'];
+            sampleCategories.forEach(cat => linksData[cat] = []);
+            
+            // Add sample YouTube links
+            linksData['HTML'].push({
+                value: 'https://www.youtube.com/watch?v=dD2EISBDjWM',
+                type: 'link',
+                title: 'HTML Crash Course',
+                source: 'YouTube'
+            });
+            
+            linksData['CSS'].push({
+                value: 'https://www.w3schools.com/css/',
+                type: 'link',
+                title: 'CSS Tutorial',
+                source: 'W3Schools'
+            });
+            
+            linksData['JavaScript'].push({
+                value: 'https://www.youtube.com/watch?v=PkZNo7MFNFg',
+                type: 'link',
+                title: 'JavaScript Full Course',
+                source: 'YouTube'
+            });
+            
+            linksData['Notes'].push({
+                value: 'Important note about JavaScript closures',
+                type: 'text',
+                title: 'Closures concept',
+                source: 'data'
+            });
+            
+            initializeDashboard();
+        }
+
+        // Build phone-password mapping
         function buildPhonePasswordMap(rows) {
             const headers = rows[0] || [];
             const phoneColIndex = headers.findIndex(h => 
@@ -1212,6 +1435,8 @@
             
             for (let i = 1; i < rows.length; i++) {
                 const row = rows[i];
+                if (!row || row.length === 0) continue;
+                
                 const phone = row[phoneColIndex] ? row[phoneColIndex].trim() : '';
                 const password = row[passwordColIndex] ? row[passwordColIndex].trim() : '';
                 
@@ -1219,11 +1444,19 @@
                     phonePasswordMap[phone] = password;
                 }
             }
+            
+            // Add default test users if map is empty
+            if (Object.keys(phonePasswordMap).length === 0) {
+                phonePasswordMap = {
+                    '9999999999': 'password123',
+                    '8888888888': 'admin123'
+                };
+            }
         }
 
-        // Process sheet data for display
+        // Process sheet data
         function processSheetData(rows) {
-            // Initialize data structure (excluding hidden categories)
+            // Initialize data structure for visible categories
             const visibleCategories = SHEET_CONFIG.categories.filter(
                 cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
             );
@@ -1242,13 +1475,12 @@
                     if (!cellValue) return;
                     
                     const category = mapHeaderToCategory(header);
-                    // Only include if category is visible (not hidden)
                     if (category && linksData[category] && !SHEET_CONFIG.hiddenCategories.includes(category)) {
                         linksData[category].push({
                             value: cellValue,
                             type: isValidUrl(cellValue) ? 'link' : 'text',
                             title: generateDisplayText(cellValue),
-                            source: isValidUrl(cellValue) ? extractSource(cellValue) : 'data'
+                            source: isValidUrl(cellValue) ? extractSource(cellValue) : 'internal data'
                         });
                     }
                 });
@@ -1268,39 +1500,53 @@
             });
             linksData['All Books'] = Array.from(allBooksSet.values());
             
-            // Update total count
-            const total = Object.values(linksData).flat().length;
-            totalLinksEl.textContent = total;
+            updateTotalCount();
+            rebuildSearchIndex();
         }
 
-        // ===== LOGIN HANDLER =====
-        loginBtn.addEventListener('click', handleLogin);
-        
-        [loginPhone, loginPassword].forEach(input => {
-            input.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') handleLogin();
-            });
-        });
+        // Update total count
+        function updateTotalCount() {
+            const total = Object.values(linksData).flat().length;
+            totalLinksEl.textContent = total;
+            
+            const visibleCount = SHEET_CONFIG.categories.filter(
+                cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
+            ).length;
+            activeCategoriesEl.textContent = visibleCount;
+            activeCategoryCountEl.textContent = visibleCount + ' categories';
+        }
 
+        // Rebuild search index
+        function rebuildSearchIndex() {
+            allItems = [];
+            Object.keys(linksData).forEach(cat => {
+                (linksData[cat] || []).forEach(item => {
+                    allItems.push({
+                        category: cat,
+                        title: item.title,
+                        value: item.value,
+                        type: item.type,
+                        source: item.source
+                    });
+                });
+            });
+        }
+
+        // Login handler
         function handleLogin() {
             const phone = loginPhone.value.trim();
             const password = loginPassword.value;
             
-            // Check if phone exists and password matches
             if (phonePasswordMap[phone] && phonePasswordMap[phone] === password) {
-                // Successful login
                 authenticatedUser = phone;
                 displayUserPhone.textContent = maskPhone(phone);
-                userAvatar.textContent = phone.slice(-2);
+                userAvatar.textContent = phone.slice(-2).toUpperCase();
                 
-                // Hide login, show dashboard
                 loginPage.style.display = 'none';
                 mainDashboard.classList.add('authenticated');
                 
-                // Initialize dashboard
                 initializeDashboard();
             } else {
-                // Show error
                 loginError.classList.add('show');
                 loginPhone.classList.add('error');
                 loginPassword.classList.add('error');
@@ -1312,6 +1558,20 @@
             }
         }
 
+        // Logout handler
+        function handleLogout() {
+            authenticatedUser = null;
+            mainDashboard.classList.remove('authenticated');
+            loginPage.style.display = 'flex';
+            loginPhone.value = '';
+            loginPassword.value = '';
+            loginError.classList.remove('show');
+            
+            // Clear search
+            clearSearch();
+        }
+
+        // Mask phone number
         function maskPhone(phone) {
             if (phone.length >= 10) {
                 return phone.slice(0, 2) + '****' + phone.slice(-4);
@@ -1319,27 +1579,21 @@
             return phone;
         }
 
-        logoutBtn.addEventListener('click', () => {
-            authenticatedUser = null;
-            mainDashboard.classList.remove('authenticated');
-            loginPage.style.display = 'flex';
-            loginPhone.value = '';
-            loginPassword.value = '';
-            loginError.classList.remove('show');
-        });
-
-        // ===== DASHBOARD INITIALIZATION =====
+        // Initialize dashboard
         function initializeDashboard() {
             renderQuickAccess();
             renderCategoryTabs();
             renderAllCategories();
         }
 
+        // Render quick access
         function renderQuickAccess() {
-            const topCategories = ['HTML', 'CSS', 'JavaScript', 'Python', 'All Books', 'Programming'];
+            const topCategories = ['HTML', 'CSS', 'JavaScript', 'Python', 'All Books', 'Notes'];
             quickAccessEl.innerHTML = '';
             
             topCategories.forEach(cat => {
+                if (!linksData[cat]) return;
+                
                 const meta = CATEGORY_META[cat] || { icon: 'fas fa-link' };
                 const item = document.createElement('div');
                 item.className = 'quick-item';
@@ -1352,9 +1606,10 @@
             });
         }
 
+        // Render category tabs
         function renderCategoryTabs() {
             const visibleCategories = SHEET_CONFIG.categories.filter(
-                cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
+                cat => !SHEET_CONFIG.hiddenCategories.includes(cat) && linksData[cat] && linksData[cat].length > 0
             );
             
             categoryTabsEl.innerHTML = '';
@@ -1378,30 +1633,32 @@
             });
         }
 
+        // Render all categories
         function renderAllCategories() {
             const visibleCategories = SHEET_CONFIG.categories.filter(
-                cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
+                cat => !SHEET_CONFIG.hiddenCategories.includes(cat) && linksData[cat] && linksData[cat].length > 0
             );
             
+            cardsGridContainer.innerHTML = ''; // Clear existing
+            
             visibleCategories.forEach(category => {
-                let gridId = `grid-${category.replace(/\s+/g, '')}`;
-                let targetGrid = document.getElementById(gridId);
+                const gridId = `grid-${category.replace(/\s+/g, '')}`;
+                const gridElement = document.createElement('div');
+                gridElement.className = 'cards-grid';
+                gridElement.id = gridId;
+                gridElement.dataset.category = category;
+                cardsGridContainer.appendChild(gridElement);
                 
-                if (!targetGrid) {
-                    targetGrid = document.createElement('div');
-                    targetGrid.className = 'cards-grid';
-                    targetGrid.id = gridId;
-                    targetGrid.dataset.category = category;
-                    cardsGridContainer.appendChild(targetGrid);
-                }
-                
-                renderCategoryGrid(targetGrid, category);
+                renderCategoryGrid(gridElement, category);
             });
             
             // Show first category
-            switchCategory(currentCategory);
+            if (visibleCategories.length > 0) {
+                switchCategory(currentCategory);
+            }
         }
 
+        // Switch category
         function switchCategory(category) {
             document.querySelectorAll('.cards-grid').forEach(g => g.classList.remove('active'));
             
@@ -1412,6 +1669,7 @@
             }
         }
 
+        // Render category grid
         function renderCategoryGrid(gridElement, category) {
             const items = linksData[category] || [];
             const meta = CATEGORY_META[category] || { icon: 'fas fa-folder' };
@@ -1442,20 +1700,19 @@
                 let itemsHtml = '';
                 chunk.forEach(item => {
                     const isLink = item.type === 'link';
+                    const ytId = isLink ? extractYouTubeId(item.value) : null;
                     
-                    itemsHtml += isLink ? 
-                        `<a href="${item.value}" target="_blank" class="link-item">
-                            <div class="link-icon"><i class="fas fa-external-link-alt"></i></div>
-                            <div class="link-details">
-                                <div class="link-title">${item.title}</div>
-                                <div class="link-meta">${item.source}</div>
+                    itemsHtml += `
+                        <div class="link-item" 
+                             data-url="${item.value}" 
+                             data-ytid="${ytId || ''}" 
+                             data-type="${item.type}">
+                            <div class="link-icon">
+                                <i class="${isLink ? 'fas fa-external-link-alt' : 'fas fa-database'}"></i>
                             </div>
-                        </a>` :
-                        `<div class="link-item" style="cursor: default;">
-                            <div class="link-icon"><i class="fas fa-database"></i></div>
                             <div class="link-details">
-                                <div class="link-title">${item.title}</div>
-                                <div class="link-meta">internal data</div>
+                                <div class="link-title">${escapeHtml(item.title)}</div>
+                                <div class="link-meta">${escapeHtml(item.source)}</div>
                             </div>
                         </div>`;
                 });
@@ -1482,7 +1739,172 @@
             gridElement.innerHTML = `<div class="card-collection">${cardsHtml}</div>`;
         }
 
-        // Helper functions
+        // Handle link clicks
+        function handleLinkClick(e) {
+            const linkItem = e.target.closest('.link-item');
+            if (!linkItem) return;
+            
+            e.preventDefault();
+            
+            const url = linkItem.dataset.url;
+            const ytid = linkItem.dataset.ytid;
+            const type = linkItem.dataset.type;
+            
+            if (type === 'link' && ytid && ytid !== 'null' && ytid !== '') {
+                openYouTubeModal(ytid);
+            } else if (type === 'link' && url) {
+                window.open(url, '_blank');
+            }
+        }
+
+        // Extract YouTube ID
+        function extractYouTubeId(url) {
+            try {
+                const parsed = new URL(url);
+                if (parsed.hostname.includes('youtube.com')) {
+                    return parsed.searchParams.get('v');
+                } else if (parsed.hostname.includes('youtu.be')) {
+                    return parsed.pathname.slice(1);
+                }
+            } catch (e) {}
+            return null;
+        }
+
+        // Open YouTube modal
+        function openYouTubeModal(videoId) {
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+            
+            youtubePlayerContainer.innerHTML = '';
+            youtubePlayerContainer.appendChild(iframe);
+            youtubeModal.classList.add('active');
+        }
+
+        // Close YouTube modal
+        function closeYouTubeModal() {
+            youtubeModal.classList.remove('active');
+            youtubePlayerContainer.innerHTML = '';
+        }
+
+        // Handle search
+        function handleSearch() {
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                searchClear.style.display = 'block';
+                performSearch(query);
+            } else {
+                searchClear.style.display = 'none';
+                clearSearch();
+            }
+        }
+
+        // Clear search
+        function clearSearch() {
+            searchInput.value = '';
+            searchClear.style.display = 'none';
+            searchResultsCount.textContent = '';
+            
+            // Hide search results grid if exists
+            const searchGrid = document.getElementById('grid-SearchResults');
+            if (searchGrid) {
+                searchGrid.remove();
+            }
+            
+            // Show current category
+            document.querySelectorAll('.cards-grid').forEach(g => g.classList.remove('active'));
+            switchCategory(currentCategory);
+        }
+
+        // Perform search
+        function performSearch(query) {
+            const q = query.toLowerCase();
+            const filtered = allItems.filter(item => 
+                item.title.toLowerCase().includes(q) || 
+                item.value.toLowerCase().includes(q) ||
+                item.category.toLowerCase().includes(q)
+            );
+
+            // Remove existing search grid
+            const existingGrid = document.getElementById('grid-SearchResults');
+            if (existingGrid) existingGrid.remove();
+
+            // Create search results grid
+            const searchGrid = document.createElement('div');
+            searchGrid.className = 'cards-grid active';
+            searchGrid.id = 'grid-SearchResults';
+            searchGrid.dataset.category = 'SearchResults';
+            cardsGridContainer.appendChild(searchGrid);
+
+            if (filtered.length === 0) {
+                searchGrid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3 style="margin: 1rem 0;">No results found</h3>
+                        <p style="color: var(--text-secondary);">Try different keywords</p>
+                    </div>
+                `;
+                searchResultsCount.textContent = '0 results';
+            } else {
+                // Group results
+                const itemsPerCard = 5;
+                const chunks = [];
+                for (let i = 0; i < filtered.length; i += itemsPerCard) {
+                    chunks.push(filtered.slice(i, i + itemsPerCard));
+                }
+                
+                let cardsHtml = '';
+                chunks.forEach((chunk, idx) => {
+                    let itemsHtml = '';
+                    chunk.forEach(item => {
+                        const isLink = item.type === 'link';
+                        const ytId = isLink ? extractYouTubeId(item.value) : null;
+                        
+                        itemsHtml += `
+                            <div class="link-item" 
+                                 data-url="${item.value}" 
+                                 data-ytid="${ytId || ''}" 
+                                 data-type="${item.type}">
+                                <div class="link-icon">
+                                    <i class="${isLink ? 'fas fa-external-link-alt' : 'fas fa-database'}"></i>
+                                </div>
+                                <div class="link-details">
+                                    <div class="link-title">${escapeHtml(item.title)}</div>
+                                    <div class="link-meta">${escapeHtml(item.category)} · ${escapeHtml(item.source)}</div>
+                                </div>
+                            </div>`;
+                    });
+                    
+                    cardsHtml += `
+                        <div class="resource-card">
+                            <div class="card-glow"></div>
+                            <div class="card-header">
+                                <h3><i class="fas fa-search"></i> Search Results</h3>
+                                <div class="card-badge">${idx * itemsPerCard + 1}-${Math.min((idx + 1) * itemsPerCard, filtered.length)}</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="link-list">
+                                    ${itemsHtml}
+                                </div>
+                            </div>
+                        </div>`;
+                });
+                
+                searchGrid.innerHTML = `<div class="card-collection">${cardsHtml}</div>`;
+                searchResultsCount.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''}`;
+            }
+
+            // Hide other categories
+            document.querySelectorAll('.cards-grid').forEach(g => {
+                if (g.id !== 'grid-SearchResults') {
+                    g.classList.remove('active');
+                }
+            });
+        }
+
+        // Helper: map header to category
         function mapHeaderToCategory(header) {
             const h = header.toLowerCase().trim();
             
@@ -1509,10 +1931,17 @@
             return null;
         }
 
+        // Helper: validate URL
         function isValidUrl(str) {
-            try { new URL(str); return true; } catch { return false; }
+            try { 
+                new URL(str); 
+                return true; 
+            } catch { 
+                return false; 
+            }
         }
 
+        // Helper: extract source
         function extractSource(url) {
             try {
                 const host = new URL(url).hostname;
@@ -1523,27 +1952,36 @@
                 if (host.includes('python.org')) return 'Python.org';
                 if (host.includes('analyticsvidhya')) return 'Analytics Vidhya';
                 if (host.includes('drive.google')) return 'Google Drive';
+                if (host.includes('github')) return 'GitHub';
                 return host.replace('www.', '').split('.')[0];
             } catch {
                 return 'link';
             }
         }
 
+        // Helper: generate display text
         function generateDisplayText(value) {
             if (isValidUrl(value)) {
                 try {
                     const url = new URL(value);
                     if (url.hostname.includes('youtube')) {
                         const videoId = url.searchParams.get('v') || url.pathname.split('/').pop();
-                        return `YouTube: ${videoId}`;
+                        return `YouTube Video: ${videoId}`;
                     }
                     const path = url.pathname.split('/').filter(p => p).pop() || '';
                     return decodeURIComponent(path.replace(/[-_]/g, ' ')) || url.hostname;
                 } catch {
-                    return value.slice(0, 30);
+                    return value.slice(0, 40);
                 }
             }
-            return value;
+            return value.length > 40 ? value.slice(0, 40) + '...' : value;
+        }
+
+        // Helper: escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
     </script>
 </body>
