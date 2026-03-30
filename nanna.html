@@ -2,1987 +2,489 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Sphere · Dark Enterprise</title>
-
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Skill Sphere Code Hub· Professional Enterprise Hub</title>
+    <!-- Premium Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <!-- PDF.js for embedded PDF viewing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <style>
-        /* ===== DARK MODE ENTERPRISE DESIGN SYSTEM ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
-            /* Dark Mode Core Colors */
             --bg-primary: #0a0a0f;
             --bg-secondary: #111117;
             --bg-tertiary: #1a1a24;
-            --bg-card: #14141f;
+            --bg-card: #14141fe6;
             --bg-input: #1e1e2a;
-            
-            /* Accent Colors - Neon Theme */
             --primary: #8b5cf6;
             --primary-dark: #7c3aed;
             --primary-light: #a78bfa;
             --accent: #f59e0b;
             --success: #10b981;
             --danger: #ef4444;
-            --info: #3b82f6;
-            
-            /* Text Colors */
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --text-tertiary: #6b6b7b;
-            --text-muted: #4a4a5a;
-            
-            /* Borders & Effects */
             --border-light: #2a2a35;
-            --border-medium: #3a3a48;
-            --glow-color: rgba(139, 92, 246, 0.3);
-            
-            /* Gradients */
-            --gradient-primary: linear-gradient(145deg, #8b5cf6, #6366f1);
-            --gradient-glow: linear-gradient(145deg, rgba(139,92,246,0.2), rgba(99,102,241,0.2));
-            
-            /* Shadows */
-            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2);
-            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3);
-            --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.6);
-            --shadow-xl: 0 35px 60px -15px rgba(0,0,0,0.8);
-            --shadow-glow: 0 0 20px var(--glow-color);
-            
-            /* Border Radius */
-            --radius-sm: 8px;
+            --glow-color: rgba(139, 92, 246, 0.5);
+            --gradient-primary: linear-gradient(135deg, #8b5cf6, #6366f1);
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 24px;
-            --radius-2xl: 32px;
-            --radius-full: 9999px;
-            
-            /* Animations */
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-glow: 0 0 15px var(--glow-color);
+            --transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* ===== LOGIN PAGE - DARK MODE ===== */
-        .login-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Animated Grid Background */
-        .login-bg-grid {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--border-light) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.1;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* Floating Orbs */
-        .orb {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            animation: orbFloat 15s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            top: -100px;
-            right: -100px;
-        }
-
-        .orb-2 {
-            bottom: -100px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, 30px) scale(1.1); }
-        }
-
-        .login-card {
-            background: var(--bg-secondary);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: var(--radius-2xl);
-            width: 100%;
-            max-width: 440px;
-            position: relative;
-            z-index: 10;
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-xl), var(--shadow-glow);
-            animation: cardReveal 0.8s ease-out;
-        }
-
-        @keyframes cardReveal {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .login-logo {
-            width: 90px;
-            height: 90px;
-            background: var(--gradient-primary);
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: white;
-            font-size: 2.8rem;
-            box-shadow: var(--shadow-glow);
-            animation: logoGlow 3s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .login-logo::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 6s ease-in-out infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            20%, 100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        @keyframes logoGlow {
-            0%, 100% { box-shadow: 0 0 30px var(--glow-color); }
-            50% { box-shadow: 0 0 50px var(--glow-color); }
-        }
-
-        .login-header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .login-header p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .input-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .input-field-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 1rem;
-            color: var(--text-tertiary);
-            font-size: 1.2rem;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            background: var(--bg-input);
-            border: 2px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            font-size: 1rem;
-            transition: var(--transition);
-            color: var(--text-primary);
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(139,92,246,0.2);
-        }
-
-        .input-field.error {
-            border-color: var(--danger);
-            animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-        }
-
-        @keyframes shake {
-            10%, 90% { transform: translateX(-1px); }
-            20%, 80% { transform: translateX(2px); }
-            30%, 50%, 70% { transform: translateX(-4px); }
-            40%, 60% { transform: translateX(4px); }
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 1rem;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius-lg);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 1rem;
-        }
-
-        .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .login-btn:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .error-message {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-            padding: 1rem;
-            border-radius: var(--radius-lg);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .error-message.show {
-            display: flex;
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== MAIN DASHBOARD - DARK MODE ===== */
-        .main-container {
-            display: none;
-            min-height: 100vh;
-            background: var(--bg-primary);
-        }
-
-        .main-container.authenticated {
-            display: block;
-        }
-
-        /* Premium Navigation - Glassmorphism */
-        .nav-wrapper {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            background: rgba(10, 10, 15, 0.8);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .navbar {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            box-shadow: var(--shadow-glow);
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: -0.5px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .user-badge {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0.6rem 1.2rem 0.6rem 0.6rem;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-full);
-            border: 1px solid var(--border-light);
-        }
-
-        .user-avatar {
-            width: 38px;
-            height: 38px;
-            background: var(--gradient-primary);
-            border-radius: var(--radius-full);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .user-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .user-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .user-status {
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
-        }
-
-        .logout-btn {
-            padding: 0.6rem 1.5rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-full);
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logout-btn:hover {
-            background: var(--danger);
-            color: white;
-            border-color: var(--danger);
-        }
-
-        /* Search Bar */
-        .global-search {
-            max-width: 1600px;
-            margin: 1.5rem auto 0;
-            padding: 0 2rem;
-        }
-        
-        .search-wrapper {
-            position: relative;
-            width: 100%;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-full);
-            border: 1px solid var(--border-light);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        .search-wrapper:focus-within {
-            border-color: var(--primary);
-            box-shadow: var(--shadow-glow);
-        }
-        
-        .search-icon {
-            padding: 0 1.2rem;
-            color: var(--text-tertiary);
-            font-size: 1.2rem;
-        }
-        
-        .search-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 1rem 1rem 1rem 0;
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        .search-input::placeholder {
-            color: var(--text-tertiary);
-            font-weight: 400;
-        }
-        
-        .search-input:focus {
-            outline: none;
-        }
-        
-        .search-clear {
-            background: transparent;
-            border: none;
-            color: var(--text-tertiary);
-            padding: 0 1.2rem;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: none;
-        }
-        
-        .search-clear:hover {
-            color: var(--text-primary);
-        }
-        
-        .search-results-count {
-            margin-top: 0.8rem;
-            font-size: 0.9rem;
-            color: var(--text-tertiary);
-        }
-
-        /* YouTube Modal */
-        .youtube-modal {
-            display: none;
-            position: fixed;
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-        
-        .youtube-modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: var(--bg-secondary);
-            border-radius: var(--radius-xl);
-            padding: 1.5rem;
-            width: 90%;
-            max-width: 900px;
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-xl);
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .modal-header h3 {
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .close-modal {
-            background: transparent;
-            border: none;
-            color: var(--text-tertiary);
-            font-size: 1.8rem;
-            cursor: pointer;
-            line-height: 1;
-        }
-        
-        .close-modal:hover {
-            color: var(--danger);
-        }
-        
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: var(--radius-lg);
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Hero Section */
-        .hero {
-            max-width: 1600px;
-            margin: 3rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            animation: fadeInLeft 1s ease-out;
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--gradient-glow);
-            padding: 0.6rem 1.2rem;
-            border-radius: var(--radius-full);
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary-light);
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-light);
-            backdrop-filter: blur(10px);
-        }
-
-        .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .gradient-text {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 550px;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .quick-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: var(--radius-2xl);
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-xl);
-            backdrop-filter: blur(10px);
-        }
-
-        .quick-item {
-            background: var(--bg-tertiary);
-            padding: 1.2rem;
-            border-radius: var(--radius-lg);
-            text-align: center;
-            text-decoration: none;
-            color: var(--text-primary);
-            border: 1px solid var(--border-light);
-            transition: var(--transition);
-            font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        .quick-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-glow);
-            background: var(--gradient-primary);
-            color: white;
-        }
-
-        .quick-item i {
-            display: block;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Category Section */
-        .category-section {
-            max-width: 1600px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .section-header h2 i {
-            color: var(--primary);
-        }
-
-        .category-counter {
-            background: var(--bg-tertiary);
-            padding: 0.5rem 1.2rem;
-            border-radius: var(--radius-full);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border: 1px solid var(--border-light);
-        }
-
-        .tabs-scroll {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            margin-bottom: 2rem;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) var(--bg-tertiary);
-        }
-
-        .tabs-scroll::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .tabs-scroll::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-full);
-        }
-
-        .tabs-scroll::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: var(--radius-full);
-        }
-
-        .tab {
-            padding: 0.8rem 1.8rem;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            white-space: nowrap;
-            cursor: pointer;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-light);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
-        }
-
-        .tab:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            color: var(--text-primary);
-        }
-
-        .tab.active {
-            background: var(--gradient-primary);
-            color: white;
-            border-color: transparent;
-            box-shadow: var(--shadow-glow);
-        }
-
-        /* Cards Grid */
-        .cards-grid {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-            display: none;
-        }
-
-        .cards-grid.active {
-            display: block;
-        }
-
-        .card-collection {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 2rem;
-        }
-
-        .resource-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: cardAppear 0.6s ease-out forwards;
-            backdrop-filter: blur(10px);
-        }
-
-        @keyframes cardAppear {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .resource-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .card-glow {
-            height: 4px;
-            background: var(--gradient-primary);
-            width: 0;
-            transition: width 0.5s ease-out;
-        }
-
-        .resource-card:hover .card-glow {
-            width: 100%;
-        }
-
-        .card-header {
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-light);
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .card-header h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .card-header h3 i {
-            color: var(--primary);
-        }
-
-        .card-badge {
-            background: var(--bg-tertiary);
-            padding: 0.3rem 1rem;
-            border-radius: var(--radius-full);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .link-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .link-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-lg);
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: var(--transition);
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
-
-        .link-item:hover {
-            background: var(--bg-secondary);
-            border-color: var(--border-light);
-            transform: translateX(5px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .link-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            color: var(--primary);
-            border: 1px solid var(--border-light);
-            flex-shrink: 0;
-        }
-
-        .link-details {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .link-title {
-            font-weight: 500;
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-            word-break: break-word;
-        }
-
-        .link-meta {
-            font-size: 0.75rem;
-            color: var(--text-tertiary);
-        }
-
-        /* Footer */
-        .footer {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-tertiary);
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Loading State */
-        .loading-container {
-            text-align: center;
-            padding: 4rem;
-        }
-
-        .loader {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--border-light);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 4rem;
-            background: var(--bg-card);
-            border-radius: var(--radius-xl);
-            border: 1px solid var(--border-light);
-        }
-
-        .empty-state i {
-            font-size: 3rem;
-            color: var(--text-tertiary);
-            margin-bottom: 1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero p {
-                margin: 0 auto 2.5rem;
-            }
-            .hero-stats {
-                justify-content: center;
-            }
-            .quick-grid {
-                max-width: 500px;
-                margin: 0 auto;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .card-collection {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .quick-grid {
-                grid-template-columns: 1fr;
-            }
-            .tab {
-                padding: 0.6rem 1.2rem;
-            }
-            .login-card {
-                padding: 2rem;
-            }
-        }
+            overflow-x: hidden;
+        }
+
+        /* Login & core layout */
+        .login-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-primary); position: relative; overflow: hidden; }
+        .login-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px); background-size: 50px 50px; opacity: 0.08; animation: gridMove 25s linear infinite; }
+        @keyframes gridMove { 0% { transform: translate(0,0); } 100% { transform: translate(50px,50px); } }
+        .login-card { background: rgba(17,17,23,0.95); backdrop-filter: blur(16px); padding: 2rem; border-radius: var(--radius-xl); width: 90%; max-width: 420px; border: 1px solid var(--border-light); box-shadow: 0 25px 45px rgba(0,0,0,0.5), var(--shadow-glow); }
+        .login-logo { width: 80px; height: 80px; background: var(--gradient-primary); border-radius: 28px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; font-size: 2.5rem; box-shadow: var(--shadow-glow); }
+        .input-field { width: 100%; padding: 1rem 1rem 1rem 3rem; background: var(--bg-input); border: 2px solid var(--border-light); border-radius: var(--radius-md); color: white; font-size: 1rem; transition: var(--transition); }
+        .input-field:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,92,246,0.3); }
+        .login-btn { background: var(--gradient-primary); width: 100%; padding: 1rem; border: none; border-radius: var(--radius-md); font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); }
+        .error-message { background: rgba(239,68,68,0.15); border-left: 4px solid var(--danger); display: none; margin-bottom: 1rem; padding: 0.8rem; border-radius: var(--radius-md); }
+
+        /* main dashboard */
+        .main-container { display: none; min-height: 100vh; }
+        .main-container.authenticated { display: block; }
+        .nav-wrapper { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(16px); background: rgba(10,10,15,0.85); border-bottom: 1px solid var(--border-light); }
+        .navbar { padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; }
+        .logo-icon { width: 44px; height: 44px; background: var(--gradient-primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+        .user-badge { background: var(--bg-tertiary); border-radius: 60px; padding: 0.3rem 1rem 0.3rem 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .user-avatar-img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: var(--gradient-primary); }
+        .user-avatar-placeholder { width: 38px; height: 38px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .logout-btn { background: transparent; border: 1px solid var(--border-light); border-radius: 40px; padding: 0.5rem 1.2rem; cursor: pointer; transition: var(--transition); }
+        .logout-btn:hover { background: var(--danger); border-color: var(--danger); }
+
+        /* search */
+        .global-search { padding: 1rem 1.5rem; max-width: 1600px; margin: 0 auto; }
+        .search-wrapper { background: var(--bg-tertiary); border-radius: 60px; border: 1px solid var(--border-light); display: flex; align-items: center; transition: var(--transition); }
+        .search-wrapper:focus-within { border-color: var(--primary); box-shadow: var(--shadow-glow); }
+        .search-input { flex: 1; background: transparent; border: none; padding: 0.9rem 1rem; color: white; font-size: 1rem; }
+        .search-clear { background: none; border: none; color: var(--text-tertiary); padding: 0 1rem; cursor: pointer; font-size: 1.2rem; display: none; }
+
+        /* hero & quick */
+        .hero { padding: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1400px; margin: 0 auto; align-items: center; }
+        @media (max-width: 800px) { .hero { grid-template-columns: 1fr; text-align: center; } .hero-stats { justify-content: center; } }
+        .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius-xl); }
+        .quick-item { background: var(--bg-tertiary); padding: 0.8rem; border-radius: var(--radius-md); text-align: center; cursor: pointer; transition: var(--transition); border: 1px solid var(--border-light); }
+        .quick-item:active { transform: scale(0.96); background: var(--primary); }
+        .stat-value { font-size: 2rem; font-weight: 800; color: var(--primary); }
+
+        /* tabs */
+        .tabs-scroll { display: flex; gap: 10px; overflow-x: auto; padding: 0.5rem 1rem 1rem; scrollbar-width: thin; }
+        .tab { background: var(--bg-tertiary); border: 1px solid var(--border-light); border-radius: 60px; padding: 0.6rem 1.4rem; white-space: nowrap; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+        .tab.active { background: var(--gradient-primary); border-color: transparent; box-shadow: var(--shadow-glow); }
+        .cards-grid { display: none; padding: 0 1.5rem 3rem; max-width: 1600px; margin: 0 auto; }
+        .cards-grid.active { display: block; }
+        .card-collection { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.8rem; }
+
+        .resource-card { background: var(--bg-card); backdrop-filter: blur(8px); border-radius: var(--radius-lg); border: 1px solid var(--border-light); transition: var(--transition); overflow: hidden; }
+        .resource-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+        .card-glow { height: 3px; background: var(--gradient-primary); width: 0%; transition: width 0.4s; }
+        .resource-card:hover .card-glow { width: 100%; }
+        .link-item { display: flex; align-items: center; gap: 12px; padding: 0.9rem; background: var(--bg-tertiary); margin-bottom: 8px; border-radius: var(--radius-md); cursor: pointer; transition: 0.2s; touch-action: manipulation; }
+        .link-item:active { background: var(--primary-dark); transform: translateX(4px); }
+        .link-icon { width: 42px; height: 42px; background: rgba(139,92,246,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .link-title { font-weight: 500; font-size: 0.9rem; }
+        .video-badge, .pdf-badge, .drive-badge { background: rgba(255,0,0,0.2); color: #ff6b6b; border-radius: 20px; padding: 2px 8px; font-size: 0.7rem; display: inline-flex; align-items: center; gap: 4px; margin-left: 8px; }
+        .pdf-badge { background: rgba(16,185,129,0.2); color: #10b981; }
+        .drive-badge { background: rgba(59,130,246,0.2); color: #3b82f6; }
+
+        /* Modal for PDF/Drive preview */
+        .preview-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); backdrop-filter: blur(12px); align-items: center; justify-content: center; z-index: 2000; }
+        .preview-modal.active { display: flex; }
+        .preview-content { background: #0a0a0f; width: 95%; max-width: 1200px; height: 85vh; border-radius: 28px; border: 1px solid var(--border-light); overflow: hidden; display: flex; flex-direction: column; }
+        .preview-header { padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: #111117; border-bottom: 1px solid var(--border-light); }
+        .preview-iframe { flex: 1; width: 100%; border: none; background: white; }
+        .close-preview { font-size: 2rem; background: none; border: none; color: white; cursor: pointer; padding: 0 10px; }
+
+        /* Suggestion Form - Professional */
+        .suggestion-panel { position: fixed; bottom: 20px; right: 20px; z-index: 150; }
+        .suggestion-trigger { background: var(--gradient-primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-glow); transition: var(--transition); border: none; color: white; font-size: 1.8rem; }
+        .suggestion-form-container { position: fixed; bottom: 100px; right: 20px; width: 340px; background: var(--bg-secondary); border-radius: var(--radius-xl); border: 1px solid var(--border-light); box-shadow: 0 20px 40px rgba(0,0,0,0.5); display: none; flex-direction: column; overflow: hidden; backdrop-filter: blur(12px); z-index: 151; }
+        .suggestion-form-container.active { display: flex; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .form-header { background: var(--gradient-primary); padding: 1rem; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .form-body { padding: 1.2rem; display: flex; flex-direction: column; gap: 12px; }
+        .form-body input, .form-body textarea, .form-body select { background: var(--bg-input); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 0.8rem; color: white; font-family: inherit; width: 100%; }
+        .form-body textarea { min-height: 80px; resize: vertical; }
+        .submit-suggestion { background: var(--gradient-primary); border: none; padding: 0.8rem; border-radius: var(--radius-md); color: white; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .bonus-badge { background: linear-gradient(135deg, #f59e0b, #ef4444); padding: 5px 10px; border-radius: 20px; font-size: 0.7rem; text-align: center; margin-top: 8px; }
+
+        .empty-state { text-align: center; padding: 3rem; background: var(--bg-card); border-radius: var(--radius-lg); }
+        .loading-container { text-align: center; padding: 4rem; }
+        .footer { padding: 2rem; text-align: center; border-top: 1px solid var(--border-light); font-size: 0.8rem; color: var(--text-tertiary); }
+        button, .tab, .quick-item, .link-item { cursor: pointer; touch-action: manipulation; }
+        .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--success); color: white; padding: 12px 24px; border-radius: 60px; z-index: 300; font-weight: 500; display: none; animation: fadeInOut 3s ease; }
+        @keyframes fadeInOut { 0% { opacity: 0; transform: translateX(-50%) translateY(20px); } 15% { opacity: 1; transform: translateX(-50%) translateY(0); } 85% { opacity: 1; } 100% { opacity: 0; } }
     </style>
 </head>
 <body>
-    <!-- LOGIN PAGE -->
     <div class="login-container" id="loginPage">
         <div class="login-bg-grid"></div>
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        
         <div class="login-card">
-            <div class="login-header">
-                <div class="login-logo">
-                    <i class="fas fa-cubes"></i>
-                </div>
-                <h1>Skill Sphere</h1>
-                <p>Dark Enterprise · Secure Access</p>
-            </div>
-            
-            <div class="error-message" id="loginError">
-                <i class="fas fa-exclamation-circle"></i>
-                <span>Invalid phone number or password</span>
-            </div>
-            
-            <div class="input-group">
-                <label class="input-label">Phone Number</label>
-                <div class="input-field-wrapper">
-                    <i class="fas fa-phone-alt input-icon"></i>
-                    <input type="tel" class="input-field" id="loginPhone" placeholder="Enter your phone number">
-                </div>
-            </div>
-            
-            <div class="input-group">
-                <label class="input-label">Password</label>
-                <div class="input-field-wrapper">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input type="password" class="input-field" id="loginPassword" placeholder="Enter your password">
-                </div>
-            </div>
-            
-            <button class="login-btn" id="loginBtn">
-                <i class="fas fa-shield-alt"></i> Authenticate
-            </button>
-            
-            <div style="text-align: center; margin-top: 2rem; color: var(--text-tertiary); font-size: 0.85rem;">
-                <i class="fas fa-shield"></i> End-to-end encrypted
-            </div>
+            <div class="login-logo"><i class="fas fa-cubes"></i></div>
+            <h1 style="text-align:center; font-size:2rem;">Skill Sphere</h1>
+            <p style="text-align:center; color:var(--text-secondary); margin-bottom:2rem;">Professional Enterprise Hub</p>
+            <div class="error-message" id="loginError"><i class="fas fa-exclamation-triangle"></i> Invalid credentials</div>
+            <div class="input-group"><label>Phone</label><div class="input-field-wrapper" style="position:relative;"><i class="fas fa-phone" style="position:absolute; left:15px; top:16px;"></i><input type="tel" id="loginPhone" class="input-field" placeholder="Enter phone number"></div></div>
+            <div class="input-group"><label>Password</label><div class="input-field-wrapper" style="position:relative;"><i class="fas fa-lock" style="position:absolute; left:15px; top:16px;"></i><input type="password" id="loginPassword" class="input-field" placeholder="Password"></div></div>
+            <button class="login-btn" id="loginBtn"><i class="fas fa-shield-alt"></i> Authenticate</button>
+            <div style="text-align:center; margin-top:1rem; font-size:0.7rem; color:var(--text-tertiary);">Demo: 9999999999 / password123</div>
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD -->
     <div class="main-container" id="mainDashboard">
-        <!-- Navigation -->
-        <div class="nav-wrapper">
-            <div class="navbar">
-                <div class="logo-group">
-                    <div class="logo-icon">
-                        <i class="fas fa-cubes"></i>
-                    </div>
-                    <div>
-                        <div class="logo-text">Skill Sphere</div>
-                        <div style="font-size: 0.7rem; color: var(--text-tertiary);">dark mode · enterprise</div>
-                    </div>
-                </div>
-                <div class="user-menu">
-                    <div class="user-badge">
-                        <div class="user-avatar" id="userAvatar">U</div>
-                        <div class="user-info">
-                            <span class="user-name" id="displayUserPhone"></span>
-                            <span class="user-status">authenticated</span>
-                        </div>
-                    </div>
-                    <button class="logout-btn" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i> Exit
-                    </button>
-                </div>
-            </div>
-        </div>
+        <div class="nav-wrapper"><div class="navbar"><div class="logo-group" style="display:flex; gap:12px; align-items:center;"><div class="logo-icon"><i class="fas fa-cubes"></i></div><div><div class="logo-text" style="font-weight:800;">Skill Sphere Code Hub</div><div style="font-size:10px;">pro edition</div></div></div><div class="user-menu"><div class="user-badge" id="userBadge"><div id="userAvatarContainer"></div><span id="displayUserPhone"></span></div><button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Exit</button></div></div></div>
 
-        <!-- Search Bar -->
-        <div class="global-search">
-            <div class="search-wrapper">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" id="globalSearchInput" placeholder="Search all resources... (e.g., youtube, python, book)">
-                <button class="search-clear" id="searchClearBtn"><i class="fas fa-times-circle"></i></button>
-            </div>
-            <div class="search-results-count" id="searchResultsCount"></div>
-        </div>
+        <div class="global-search"><div class="search-wrapper"><i class="fas fa-search" style="padding-left:1rem; color:var(--text-tertiary);"></i><input type="text" id="globalSearchInput" class="search-input" placeholder="🔍 Search resources, YouTube, PDFs, Drive links..."><button class="search-clear" id="searchClearBtn"><i class="fas fa-times-circle"></i></button></div><div class="search-results-count" id="searchResultsCount"></div></div>
 
-        <!-- Hero Section -->
-        <div class="hero">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-shield-alt"></i> Verified Session · Sensitive Data Hidden
-                </div>
-                <h1>
-                    Secure <span class="gradient-text">Resource</span><br>
-                    Command Center
-                </h1>
-                <p>
-                    Access your learning resources, books, tools, and notes. All data is encrypted and securely stored, ensuring your privacy and confidentiality at all times.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-value" id="totalLinksCount">0</span>
-                        <span class="stat-label">Resources</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value" id="activeCategoriesCount">0</span>
-                        <span class="stat-label">Categories</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value" id="hiddenCount">3</span>
-                        <span class="stat-label">Hidden</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="quick-grid" id="quickAccess">
-                    <!-- Quick access will be populated -->
-                </div>
-            </div>
-        </div>
+        <div class="hero"><div class="hero-content"><div class="hero-badge" style="background:var(--gradient-glow); display:inline-block; padding:5px 12px; border-radius:30px;"><i class="fas fa-crown"></i> Professional Access</div><h1 style="font-size:2.4rem; margin-top:1rem;">Elite <span class="gradient-text" style="background:var(--gradient-primary); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Resource</span> Command</h1><div class="hero-stats" style="display:flex; gap:2rem; margin-top:1.5rem;"><div><div class="stat-value" id="totalLinksCount">0</div><div>Resources</div></div><div><div class="stat-value" id="activeCategoriesCount">0</div><div>Categories</div></div></div></div><div class="hero-visual"><div class="quick-grid" id="quickAccess"></div></div></div>
 
-        <!-- Category Tabs -->
-        <div class="category-section">
-            <div class="section-header">
-                <h2>
-                    <i class="fas fa-compass"></i>
-                    Resource Categories
-                </h2>
-                <div class="category-counter" id="activeCategoryCount">0 categories</div>
-            </div>
-            <div class="tabs-scroll" id="categoryTabs">
-                <!-- Tabs will be populated -->
-            </div>
-        </div>
-
-        <!-- Loading State -->
-        <div id="loadingState" class="loading-container" style="display: none;">
-            <div class="loader"></div>
-            <p style="margin-top: 1rem; color: var(--text-secondary);">Loading secure resources...</p>
-        </div>
-
-        <!-- Cards Grid Container -->
+        <div class="category-section"><div class="section-header" style="display:flex; justify-content:space-between; padding:0 1.5rem;"><h2><i class="fas fa-layer-group"></i> Categories</h2><span id="activeCategoryCount" class="category-counter"></span></div><div class="tabs-scroll" id="categoryTabs"></div></div>
+        <div id="loadingState" class="loading-container" style="display:none;"><div class="loader"></div></div>
         <div id="cardsGridContainer"></div>
+        <footer class="footer"><div>© 2026 Skill Sphere code hub Pro · Embedded PDF/Drive · Suggest & Earn Bonus</div></footer>
+    </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div>© 2026 Skill Sphere · Dark Enterprise Edition</div>
-            <div class="footer-links">
-                <span><i class="fas fa-shield-alt"></i> AES-256</span>
-                <span><i class="fas fa-eye-slash"></i> 3 Hidden Categories</span>
-                <span><i class="fas fa-sync-alt"></i> Live Sync</span>
-            </div>
-        </footer>
-
-        <!-- YouTube Modal -->
-        <div class="youtube-modal" id="youtubeModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3><i class="fab fa-youtube" style="color: #ff0000;"></i> YouTube Player</h3>
-                    <button class="close-modal" id="closeYoutubeModal">&times;</button>
-                </div>
-                <div class="video-container" id="youtubePlayerContainer"></div>
+    <!-- Suggestion Floating Button + Form -->
+    <div class="suggestion-panel">
+        <button class="suggestion-trigger" id="suggestionTrigger"><i class="fas fa-gift"></i></button>
+        <div class="suggestion-form-container" id="suggestionForm">
+            <div class="form-header"><span><i class="fas fa-star"></i> Suggest Resource & Get Bonus</span><button id="closeFormBtn" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button></div>
+            <div class="form-body">
+                <input type="text" id="sugName" placeholder="Your Name" required>
+                <input type="text" id="sugPhone" placeholder="WhatsApp Number (for bonus)">
+                <select id="sugType"><option value="course">📘 Course</option><option value="video">🎥 YouTube Video</option><option value="pdf">📄 PDF Document</option><option value="drive">🔗 Drive Link</option><option value="other">✨ Other Resource</option></select>
+                <input type="text" id="sugTitle" placeholder="Resource Title / Name">
+                <textarea id="sugLink" placeholder="Link or Description"></textarea>
+                <button class="submit-suggestion" id="submitSuggestion"><i class="fab fa-whatsapp"></i> Submit & Get Bonus → WhatsApp</button>
+                <div class="bonus-badge"><i class="fas fa-coins"></i> ₹5 - ₹50 Bonus on approval! Exclusive rewards</div>
             </div>
         </div>
     </div>
+
+    <!-- Preview Modal for PDF/Drive -->
+    <div class="preview-modal" id="previewModal">
+        <div class="preview-content">
+            <div class="preview-header"><h3><i class="fas fa-file-alt"></i> Document Preview</h3><button class="close-preview" id="closePreviewBtn">&times;</button></div>
+            <iframe id="previewIframe" class="preview-iframe" src="about:blank"></iframe>
+        </div>
+    </div>
+
+    <div id="toastMsg" class="toast-msg"></div>
 
     <script>
-        // ===== ENTERPRISE AUTHENTICATION SYSTEM =====
-        // Sheet configuration
+        // ==================== CONFIG ====================
         const SHEET_CONFIG = {
             spreadsheetId: '1mJlxCazF9xaszf2QiX7_ysYhYKLsJk3aOmkMA4-wOvk',
-            range: 'A1:R50',
-            categories: [
-                'HTML', 'CSS', 'JavaScript', 'Python', 'Skills',
-                'Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5', 'All Books',
-                'Programming', 'Other Tools', 'Editing', 'Stock Market', 'Notes',
-                'Referral Code', 'Phone Number', 'Password'
-            ],
-            // Categories to hide completely
+            categories: ['HTML','CSS','JavaScript','Python','Skills','Book 1','Book 2','Book 3','Book 4','Book 5','All Books','Programming','Other Tools','Editing','Stock Market','Notes'],
             hiddenCategories: ['Referral Code', 'Phone Number', 'Password']
         };
-
-        // Category metadata
         const CATEGORY_META = {
-            'HTML': { icon: 'fab fa-html5', color: '#f97316' },
-            'CSS': { icon: 'fab fa-css3-alt', color: '#3b82f6' },
-            'JavaScript': { icon: 'fab fa-js', color: '#eab308' },
-            'Python': { icon: 'fab fa-python', color: '#22c55e' },
-            'Skills': { icon: 'fas fa-code-branch', color: '#8b5cf6' },
-            'Book 1': { icon: 'fas fa-book', color: '#ec4899' },
-            'Book 2': { icon: 'fas fa-book-open', color: '#14b8a6' },
-            'Book 3': { icon: 'fas fa-book-reader', color: '#f97316' },
-            'Book 4': { icon: 'fas fa-bookmark', color: '#6b7280' },
-            'Book 5': { icon: 'fas fa-book-medical', color: '#ef4444' },
-            'All Books': { icon: 'fas fa-books', color: '#8b5cf6' },
-            'Programming': { icon: 'fas fa-laptop-code', color: '#059669' },
-            'Other Tools': { icon: 'fas fa-tools', color: '#4b5563' },
-            'Editing': { icon: 'fas fa-pen-fancy', color: '#d97706' },
-            'Stock Market': { icon: 'fas fa-chart-line', color: '#10b981' },
-            'Notes': { icon: 'fas fa-sticky-note', color: '#6b7280' },
-            'Referral Code': { icon: 'fas fa-gift', color: '#7c3aed' },
-            'Phone Number': { icon: 'fas fa-phone-alt', color: '#dc2626' },
-            'Password': { icon: 'fas fa-key', color: '#b91c1c' }
+            'HTML':{icon:'fab fa-html5'},'CSS':{icon:'fab fa-css3-alt'},'JavaScript':{icon:'fab fa-js'},'Python':{icon:'fab fa-python'},
+            'Skills':{icon:'fas fa-code-branch'},'Book 1':{icon:'fas fa-book'},'Book 2':{icon:'fas fa-book-open'},'Book 3':{icon:'fas fa-book-reader'},
+            'Book 4':{icon:'fas fa-bookmark'},'Book 5':{icon:'fas fa-book-medical'},'All Books':{icon:'fas fa-books'},'Programming':{icon:'fas fa-laptop-code'},
+            'Other Tools':{icon:'fas fa-tools'},'Editing':{icon:'fas fa-pen-fancy'},'Stock Market':{icon:'fas fa-chart-line'},'Notes':{icon:'fas fa-sticky-note'}
         };
-
-        // Global state
-        let authenticatedUser = null;
-        let sheetData = null;
-        let linksData = {};
-        let currentCategory = 'HTML';
-        let phonePasswordMap = {};
-        let allItems = []; // Flat list for search
-
+        let authenticatedUser = null, linksData = {}, phonePasswordMap = {}, userProfilePic = null;
+        let allItems = [], currentCategory = 'HTML';
+        
         // DOM Elements
-        const loginPage = document.getElementById('loginPage');
-        const mainDashboard = document.getElementById('mainDashboard');
-        const loginBtn = document.getElementById('loginBtn');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const loginPhone = document.getElementById('loginPhone');
-        const loginPassword = document.getElementById('loginPassword');
-        const loginError = document.getElementById('loginError');
-        const displayUserPhone = document.getElementById('displayUserPhone');
-        const userAvatar = document.getElementById('userAvatar');
-        const categoryTabsEl = document.getElementById('categoryTabs');
-        const cardsGridContainer = document.getElementById('cardsGridContainer');
-        const totalLinksEl = document.getElementById('totalLinksCount');
-        const activeCategoriesEl = document.getElementById('activeCategoriesCount');
-        const activeCategoryCountEl = document.getElementById('activeCategoryCount');
-        const quickAccessEl = document.getElementById('quickAccess');
-        const loadingEl = document.getElementById('loadingState');
-        
-        // Search elements
-        const searchInput = document.getElementById('globalSearchInput');
-        const searchClear = document.getElementById('searchClearBtn');
-        const searchResultsCount = document.getElementById('searchResultsCount');
-        
-        // YouTube modal elements
-        const youtubeModal = document.getElementById('youtubeModal');
-        const closeYoutubeModal = document.getElementById('closeYoutubeModal');
-        const youtubePlayerContainer = document.getElementById('youtubePlayerContainer');
+        const loginPage = document.getElementById('loginPage'), mainDash = document.getElementById('mainDashboard');
+        const loginBtn = document.getElementById('loginBtn'), logoutBtn = document.getElementById('logoutBtn');
+        const loginPhone = document.getElementById('loginPhone'), loginPassword = document.getElementById('loginPassword'), loginErrorDiv = document.getElementById('loginError');
+        const displayUserPhoneSpan = document.getElementById('displayUserPhone'), userAvatarContainer = document.getElementById('userAvatarContainer');
+        const categoryTabs = document.getElementById('categoryTabs'), cardsGridContainer = document.getElementById('cardsGridContainer');
+        const totalLinksSpan = document.getElementById('totalLinksCount'), activeCategoriesSpan = document.getElementById('activeCategoriesCount');
+        const quickAccessDiv = document.getElementById('quickAccess'), searchInput = document.getElementById('globalSearchInput'), searchClearBtn = document.getElementById('searchClearBtn'), searchResultsCountSpan = document.getElementById('searchResultsCount');
+        const previewModal = document.getElementById('previewModal'), previewIframe = document.getElementById('previewIframe'), closePreviewBtn = document.getElementById('closePreviewBtn');
+        const suggestionTrigger = document.getElementById('suggestionTrigger'), suggestionForm = document.getElementById('suggestionForm'), closeFormBtn = document.getElementById('closeFormBtn'), submitSuggestion = document.getElementById('submitSuggestion');
+        const toastMsg = document.getElementById('toastMsg');
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            loadSheetData();
-            setupEventListeners();
-        });
+        function showToast(msg, isError=false){ toastMsg.style.backgroundColor = isError ? '#ef4444' : '#10b981'; toastMsg.innerText = msg; toastMsg.style.display = 'block'; setTimeout(()=>{ toastMsg.style.display = 'none'; }, 3000); }
 
-        function setupEventListeners() {
-            // Login
-            loginBtn.addEventListener('click', handleLogin);
-            
-            [loginPhone, loginPassword].forEach(input => {
-                input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') handleLogin();
-                });
-            });
-
-            // Logout
-            logoutBtn.addEventListener('click', handleLogout);
-
-            // Search
-            searchInput.addEventListener('input', handleSearch);
-            searchClear.addEventListener('click', clearSearch);
-
-            // YouTube modal close
-            closeYoutubeModal.addEventListener('click', closeYouTubeModal);
-            
-            // Click outside modal to close
-            youtubeModal.addEventListener('click', (e) => {
-                if (e.target === youtubeModal) closeYouTubeModal();
-            });
-
-            // Global click handler for link items (delegation)
-            document.addEventListener('click', handleLinkClick);
-        }
-
-        // Load sheet data
+        // Load sheet with profile pic from column T (index 19)
         async function loadSheetData() {
             try {
-                loadingEl.style.display = 'block';
-                const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_CONFIG.spreadsheetId}/export?format=csv&gid=0`;
-                const response = await fetch(csvUrl);
-                const csvText = await response.text();
-                const rows = csvText.split('\n').map(row => 
-                    row.split(',').map(cell => cell.replace(/^"|"$/g, '').trim())
-                );
-                
-                sheetData = rows;
-                buildPhonePasswordMap(rows);
-                processSheetData(rows);
-                initializeDashboard();
-                loadingEl.style.display = 'none';
-                
-            } catch (error) {
-                console.error('Failed to load sheet:', error);
-                loadingEl.style.display = 'none';
-                // Use sample data for testing
-                useSampleData();
-            }
+                const url = `https://docs.google.com/spreadsheets/d/${SHEET_CONFIG.spreadsheetId}/export?format=csv&gid=0`;
+                const res = await fetch(url);
+                const csv = await res.text();
+                const rows = csv.split('\n').map(r => r.split(',').map(c => c.replace(/^"|"$/g, '').trim()));
+                buildPhoneMapWithProfile(rows);
+                processSheetRows(rows);
+            } catch(e) { console.warn(e); useDemoData(); }
         }
-
-        // Sample data for testing
-        function useSampleData() {
-            phonePasswordMap = {
-                '9999999999': 'password123',
-                '8888888888': 'admin123'
-            };
-            
-            const sampleCategories = ['HTML', 'CSS', 'JavaScript', 'Python', 'Book 1', 'Book 2', 'Notes'];
-            sampleCategories.forEach(cat => linksData[cat] = []);
-            
-            // Add sample YouTube links
-            linksData['HTML'].push({
-                value: 'https://www.youtube.com/watch?v=dD2EISBDjWM',
-                type: 'link',
-                title: 'HTML Crash Course',
-                source: 'YouTube'
-            });
-            
-            linksData['CSS'].push({
-                value: 'https://www.w3schools.com/css/',
-                type: 'link',
-                title: 'CSS Tutorial',
-                source: 'W3Schools'
-            });
-            
-            linksData['JavaScript'].push({
-                value: 'https://www.youtube.com/watch?v=PkZNo7MFNFg',
-                type: 'link',
-                title: 'JavaScript Full Course',
-                source: 'YouTube'
-            });
-            
-            linksData['Notes'].push({
-                value: 'Important note about JavaScript closures',
-                type: 'text',
-                title: 'Closures concept',
-                source: 'data'
-            });
-            
-            initializeDashboard();
-        }
-
-        // Build phone-password mapping
-        function buildPhonePasswordMap(rows) {
+        
+        function buildPhoneMapWithProfile(rows) {
             const headers = rows[0] || [];
-            const phoneColIndex = headers.findIndex(h => 
-                h.toLowerCase().includes('phone') || h.toLowerCase().includes('mobile')
-            );
-            const passwordColIndex = headers.findIndex(h => 
-                h.toLowerCase().includes('password') || h.toLowerCase().includes('pass')
-            );
-            
-            if (phoneColIndex === -1 || passwordColIndex === -1) return;
-            
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                if (!row || row.length === 0) continue;
-                
-                const phone = row[phoneColIndex] ? row[phoneColIndex].trim() : '';
-                const password = row[passwordColIndex] ? row[passwordColIndex].trim() : '';
-                
-                if (phone && password) {
-                    phonePasswordMap[phone] = password;
+            const phoneIdx = headers.findIndex(h => h.toLowerCase().includes('phone'));
+            const passIdx = headers.findIndex(h => h.toLowerCase().includes('password'));
+            const profileIdx = headers.findIndex(h => h.toLowerCase() === 't' || h.toLowerCase().includes('profile') || h.toLowerCase() === 'avatar');
+            for(let i=1;i<rows.length;i++) {
+                let phone = rows[i][phoneIdx]?.trim(), pass = rows[i][passIdx]?.trim(), profile = rows[i][profileIdx]?.trim();
+                if(phone && pass) { 
+                    phonePasswordMap[phone] = { pass, profilePic: profile || null };
                 }
             }
-            
-            // Add default test users if map is empty
-            if (Object.keys(phonePasswordMap).length === 0) {
-                phonePasswordMap = {
-                    '9999999999': 'password123',
-                    '8888888888': 'admin123'
-                };
-            }
+            if(Object.keys(phonePasswordMap).length===0) phonePasswordMap['9999999999'] = { pass:'password123', profilePic:null };
         }
-
-        // Process sheet data
-        function processSheetData(rows) {
-            // Initialize data structure for visible categories
-            const visibleCategories = SHEET_CONFIG.categories.filter(
-                cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
-            );
-            visibleCategories.forEach(cat => linksData[cat] = []);
-            
-            const headers = rows[0] || [];
-            
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                if (!row || row.length === 0) continue;
-                
-                headers.forEach((header, colIndex) => {
-                    if (!header) return;
-                    
-                    const cellValue = row[colIndex] ? row[colIndex].trim() : '';
-                    if (!cellValue) return;
-                    
-                    const category = mapHeaderToCategory(header);
-                    if (category && linksData[category] && !SHEET_CONFIG.hiddenCategories.includes(category)) {
-                        linksData[category].push({
-                            value: cellValue,
-                            type: isValidUrl(cellValue) ? 'link' : 'text',
-                            title: generateDisplayText(cellValue),
-                            source: isValidUrl(cellValue) ? extractSource(cellValue) : 'internal data'
-                        });
+        
+        function processSheetRows(rows) {
+            const visibleCats = SHEET_CONFIG.categories.filter(c => !SHEET_CONFIG.hiddenCategories.includes(c));
+            visibleCats.forEach(c => linksData[c]=[]);
+            const headers = rows[0];
+            for(let i=1;i<rows.length;i++) {
+                headers.forEach((h,idx)=>{
+                    let val = rows[i][idx]?.trim();
+                    if(!val) return;
+                    let cat = mapHeaderToCategory(h);
+                    if(cat && linksData[cat] && !SHEET_CONFIG.hiddenCategories.includes(cat)) {
+                        linksData[cat].push({ value:val, type:isValidUrl(val)?'link':'text', title:generateSmartTitle(val), source:extractDomain(val), raw:val });
                     }
                 });
             }
-            
-            // Special handling for "All Books"
-            const bookCategories = ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5'];
-            const allBooksSet = new Map();
-            bookCategories.forEach(cat => {
-                if (linksData[cat]) {
-                    (linksData[cat] || []).forEach(item => {
-                        if (!allBooksSet.has(item.value)) {
-                            allBooksSet.set(item.value, item);
-                        }
-                    });
-                }
-            });
-            linksData['All Books'] = Array.from(allBooksSet.values());
-            
-            updateTotalCount();
-            rebuildSearchIndex();
+            // All Books aggregation
+            let allBooksArr = [];
+            ['Book 1','Book 2','Book 3','Book 4','Book 5'].forEach(b=>{ if(linksData[b]) allBooksArr.push(...linksData[b]); });
+            linksData['All Books'] = [...new Map(allBooksArr.map(item=>[item.value,item])).values()];
+            updateStatsAndIndex();
         }
-
-        // Update total count
-        function updateTotalCount() {
-            const total = Object.values(linksData).flat().length;
-            totalLinksEl.textContent = total;
-            
-            const visibleCount = SHEET_CONFIG.categories.filter(
-                cat => !SHEET_CONFIG.hiddenCategories.includes(cat)
-            ).length;
-            activeCategoriesEl.textContent = visibleCount;
-            activeCategoryCountEl.textContent = visibleCount + ' categories';
+        
+        function useDemoData() {
+            phonePasswordMap = {'9999999999':{pass:'password123', profilePic:null}};
+            const demo = { 'HTML':[{value:'https://www.youtube.com/watch?v=dD2EISBDjWM',type:'link',title:'HTML Crash Course',source:'YouTube'}], 'CSS':[{value:'https://www.w3schools.com/css/',type:'link',title:'CSS Tutorial',source:'W3Schools'}], 'JavaScript':[{value:'https://www.youtube.com/watch?v=PkZNo7MFNFg',type:'link',title:'JS Full Course',source:'YouTube'}], 'Python':[{value:'https://youtu.be/_uQrJ0TkZlc',type:'link',title:'Python Basics',source:'YouTube'}], 'Notes':[{value:'Closures in JS explained',type:'text',title:'closure note',source:'internal'}], 'Programming':[{value:'https://drive.google.com/file/d/example/view',type:'link',title:'Python E-Book PDF',source:'Google Drive'}] };
+            SHEET_CONFIG.categories.forEach(c=>{ if(demo[c]) linksData[c]=demo[c]; else linksData[c]=[]; });
+            updateStatsAndIndex();
         }
-
-        // Rebuild search index
-        function rebuildSearchIndex() {
+        
+        function updateStatsAndIndex() {
+            let total=0; Object.values(linksData).forEach(arr=>total+=arr.length);
+            totalLinksSpan.innerText=total;
+            let visibleCount = SHEET_CONFIG.categories.filter(c=>!SHEET_CONFIG.hiddenCategories.includes(c) && linksData[c]?.length>0).length;
+            activeCategoriesSpan.innerText=visibleCount;
+            document.getElementById('activeCategoryCount').innerText=visibleCount+' cats';
             allItems = [];
-            Object.keys(linksData).forEach(cat => {
-                (linksData[cat] || []).forEach(item => {
-                    allItems.push({
-                        category: cat,
-                        title: item.title,
-                        value: item.value,
-                        type: item.type,
-                        source: item.source
-                    });
-                });
-            });
+            Object.keys(linksData).forEach(cat=>{(linksData[cat]||[]).forEach(item=>allItems.push({...item,category:cat,title:item.title.toLowerCase()}))});
         }
-
-        // Login handler
-        function handleLogin() {
-            const phone = loginPhone.value.trim();
-            const password = loginPassword.value;
-            
-            if (phonePasswordMap[phone] && phonePasswordMap[phone] === password) {
-                authenticatedUser = phone;
-                displayUserPhone.textContent = maskPhone(phone);
-                userAvatar.textContent = phone.slice(-2).toUpperCase();
-                
-                loginPage.style.display = 'none';
-                mainDashboard.classList.add('authenticated');
-                
-                initializeDashboard();
-            } else {
-                loginError.classList.add('show');
-                loginPhone.classList.add('error');
-                loginPassword.classList.add('error');
-                
-                setTimeout(() => {
-                    loginPhone.classList.remove('error');
-                    loginPassword.classList.remove('error');
-                }, 500);
-            }
+        
+        function mapHeaderToCategory(h){ let hh=h.toLowerCase();
+            if(hh.includes('html')) return 'HTML'; if(hh.includes('css')) return 'CSS'; if(hh.includes('js')||hh.includes('javascript')) return 'JavaScript';
+            if(hh.includes('python')) return 'Python'; if(hh.includes('skill')) return 'Skills'; if(hh.includes('book1')) return 'Book 1';
+            if(hh.includes('book2')) return 'Book 2'; if(hh.includes('book3')) return 'Book 3'; if(hh.includes('book4')) return 'Book 4';
+            if(hh.includes('book5')) return 'Book 5'; if(hh.includes('all books')) return 'All Books'; if(hh.includes('programming')) return 'Programming';
+            if(hh.includes('other')) return 'Other Tools'; if(hh.includes('edit')) return 'Editing'; if(hh.includes('stock')) return 'Stock Market';
+            if(hh.includes('note')) return 'Notes'; return null;
         }
-
-        // Logout handler
-        function handleLogout() {
-            authenticatedUser = null;
-            mainDashboard.classList.remove('authenticated');
-            loginPage.style.display = 'flex';
-            loginPhone.value = '';
-            loginPassword.value = '';
-            loginError.classList.remove('show');
-            
-            // Clear search
-            clearSearch();
+        function isValidUrl(str){ try{ new URL(str); return true; }catch{ return false; } }
+        function extractDomain(url){ try{ let host=new URL(url).hostname; if(host.includes('youtube')) return 'YouTube'; if(host.includes('drive.google')) return 'Google Drive'; if(host.includes('pdf')) return 'PDF'; return host.split('.')[0]; }catch{ return 'link';} }
+        function generateSmartTitle(val){
+            if(isValidUrl(val)){
+                if(val.includes('youtube.com/watch')||val.includes('youtu.be')){ let id=extractYouTubeId(val); return id?`🎬 YouTube (${id.slice(0,8)})`:'Video';}
+                if(val.includes('drive.google.com')) return '📁 Google Drive Document';
+                if(val.includes('.pdf')) return '📄 PDF Document';
+                let u=new URL(val); return u.pathname.split('/').pop()?.replace(/-/g,' ') || u.hostname;
+            } return val.length>45?val.slice(0,45)+'...':val;
         }
+        function extractYouTubeId(url){ try{ let u=new URL(url); if(u.hostname.includes('youtube.com')) return u.searchParams.get('v'); if(u.hostname.includes('youtu.be')) return u.pathname.slice(1); }catch{} return null; }
+        function isDriveLink(url){ return url.includes('drive.google.com'); }
+        function isPdfLink(url){ return url.toLowerCase().includes('.pdf') || url.includes('drive.google.com/file/d/'); }
 
-        // Mask phone number
-        function maskPhone(phone) {
-            if (phone.length >= 10) {
-                return phone.slice(0, 2) + '****' + phone.slice(-4);
-            }
-            return phone;
+        function openPreview(url, title){
+            let embedUrl = url;
+            if(isDriveLink(url)){
+                let match = url.match(/\/d\/(.+?)\/|id=(.+?)(&|$)/);
+                let fileId = match ? (match[1]||match[2]) : null;
+                if(fileId) embedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                else embedUrl = url;
+            } else if(isPdfLink(url) && !url.includes('drive.google.com')) embedUrl = url;
+            else if(url.includes('youtube')) { showToast("Use video player for YouTube", false); return false; }
+            previewIframe.src = embedUrl;
+            previewModal.classList.add('active');
+            return true;
         }
-
-        // Initialize dashboard
-        function initializeDashboard() {
-            renderQuickAccess();
-            renderCategoryTabs();
-            renderAllCategories();
-        }
-
-        // Render quick access
-        function renderQuickAccess() {
-            const topCategories = ['HTML', 'CSS', 'JavaScript', 'Python', 'All Books', 'Notes'];
-            quickAccessEl.innerHTML = '';
-            
-            topCategories.forEach(cat => {
-                if (!linksData[cat]) return;
-                
-                const meta = CATEGORY_META[cat] || { icon: 'fas fa-link' };
-                const item = document.createElement('div');
-                item.className = 'quick-item';
-                item.innerHTML = `<i class="${meta.icon}"></i><span>${cat}</span>`;
-                item.addEventListener('click', () => {
-                    const targetTab = Array.from(document.querySelectorAll('.tab')).find(t => t.dataset.category === cat);
-                    if(targetTab) targetTab.click();
-                });
-                quickAccessEl.appendChild(item);
-            });
-        }
-
-        // Render category tabs
-        function renderCategoryTabs() {
-            const visibleCategories = SHEET_CONFIG.categories.filter(
-                cat => !SHEET_CONFIG.hiddenCategories.includes(cat) && linksData[cat] && linksData[cat].length > 0
-            );
-            
-            categoryTabsEl.innerHTML = '';
-            
-            visibleCategories.forEach((cat, index) => {
-                const meta = CATEGORY_META[cat] || { icon: 'fas fa-folder' };
-                const tab = document.createElement('div');
-                tab.className = `tab ${cat === currentCategory ? 'active' : ''}`;
-                tab.dataset.category = cat;
-                tab.style.animation = `fadeIn 0.3s ease-out ${index * 0.02}s both`;
-                tab.innerHTML = `<i class="${meta.icon}"></i><span>${cat}</span>`;
-                
-                tab.addEventListener('click', () => {
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    currentCategory = cat;
-                    switchCategory(cat);
-                });
-                
-                categoryTabsEl.appendChild(tab);
-            });
-        }
-
-        // Render all categories
-        function renderAllCategories() {
-            const visibleCategories = SHEET_CONFIG.categories.filter(
-                cat => !SHEET_CONFIG.hiddenCategories.includes(cat) && linksData[cat] && linksData[cat].length > 0
-            );
-            
-            cardsGridContainer.innerHTML = ''; // Clear existing
-            
-            visibleCategories.forEach(category => {
-                const gridId = `grid-${category.replace(/\s+/g, '')}`;
-                const gridElement = document.createElement('div');
-                gridElement.className = 'cards-grid';
-                gridElement.id = gridId;
-                gridElement.dataset.category = category;
-                cardsGridContainer.appendChild(gridElement);
-                
-                renderCategoryGrid(gridElement, category);
-            });
-            
-            // Show first category
-            if (visibleCategories.length > 0) {
-                switchCategory(currentCategory);
-            }
-        }
-
-        // Switch category
-        function switchCategory(category) {
-            document.querySelectorAll('.cards-grid').forEach(g => g.classList.remove('active'));
-            
-            const gridId = `grid-${category.replace(/\s+/g, '')}`;
-            const targetGrid = document.getElementById(gridId);
-            if (targetGrid) {
-                targetGrid.classList.add('active');
-            }
-        }
-
-        // Render category grid
-        function renderCategoryGrid(gridElement, category) {
-            const items = linksData[category] || [];
-            const meta = CATEGORY_META[category] || { icon: 'fas fa-folder' };
-            
-            if (items.length === 0) {
-                gridElement.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-box-open"></i>
-                        <h3 style="margin: 1rem 0;">No items in ${category}</h3>
-                        <p style="color: var(--text-secondary);">Add items to your Google Sheet</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            // Group items into cards (max 5 per card)
-            const itemsPerCard = 5;
-            const chunks = [];
-            for (let i = 0; i < items.length; i += itemsPerCard) {
-                chunks.push(items.slice(i, i + itemsPerCard));
-            }
-            
-            let cardsHtml = '';
-            chunks.forEach((chunk, idx) => {
-                const startIdx = idx * itemsPerCard + 1;
-                const endIdx = Math.min(startIdx + chunk.length - 1, items.length);
-                
-                let itemsHtml = '';
-                chunk.forEach(item => {
-                    const isLink = item.type === 'link';
-                    const ytId = isLink ? extractYouTubeId(item.value) : null;
-                    
-                    itemsHtml += `
-                        <div class="link-item" 
-                             data-url="${item.value}" 
-                             data-ytid="${ytId || ''}" 
-                             data-type="${item.type}">
-                            <div class="link-icon">
-                                <i class="${isLink ? 'fas fa-external-link-alt' : 'fas fa-database'}"></i>
-                            </div>
-                            <div class="link-details">
-                                <div class="link-title">${escapeHtml(item.title)}</div>
-                                <div class="link-meta">${escapeHtml(item.source)}</div>
-                            </div>
-                        </div>`;
-                });
-                
-                cardsHtml += `
-                    <div class="resource-card" style="animation-delay: ${idx * 0.1}s">
-                        <div class="card-glow"></div>
-                        <div class="card-header">
-                            <h3>
-                                <i class="${meta.icon}"></i>
-                                ${category}
-                            </h3>
-                            <div class="card-badge">${startIdx}-${endIdx}</div>
-                        </div>
-                        <div class="card-content">
-                            <div class="link-list">
-                                ${itemsHtml}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            gridElement.innerHTML = `<div class="card-collection">${cardsHtml}</div>`;
-        }
-
-        // Handle link clicks
-        function handleLinkClick(e) {
-            const linkItem = e.target.closest('.link-item');
-            if (!linkItem) return;
-            
-            e.preventDefault();
-            
-            const url = linkItem.dataset.url;
-            const ytid = linkItem.dataset.ytid;
-            const type = linkItem.dataset.type;
-            
-            if (type === 'link' && ytid && ytid !== 'null' && ytid !== '') {
-                openYouTubeModal(ytid);
-            } else if (type === 'link' && url) {
-                window.open(url, '_blank');
-            }
-        }
-
-        // Extract YouTube ID
-        function extractYouTubeId(url) {
-            try {
-                const parsed = new URL(url);
-                if (parsed.hostname.includes('youtube.com')) {
-                    return parsed.searchParams.get('v');
-                } else if (parsed.hostname.includes('youtu.be')) {
-                    return parsed.pathname.slice(1);
+        
+        function renderDashboard() { renderQuickAccess(); renderTabs(); renderAllCategoryGrids(); switchCategory(currentCategory); }
+        function renderQuickAccess(){
+            quickAccessDiv.innerHTML='';
+            ['HTML','CSS','JavaScript','Python','All Books','Notes','Programming'].forEach(c=>{
+                if(linksData[c]?.length){
+                    let el=document.createElement('div'); el.className='quick-item'; el.innerHTML=`<i class="${CATEGORY_META[c]?.icon||'fas fa-link'}"></i><span>${c}</span>`;
+                    el.addEventListener('click',()=>{ let tab=Array.from(document.querySelectorAll('.tab')).find(t=>t.dataset.category===c); if(tab) tab.click(); });
+                    quickAccessDiv.appendChild(el);
                 }
-            } catch (e) {}
-            return null;
+            });
         }
-
-        // Open YouTube modal
-        function openYouTubeModal(videoId) {
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-            iframe.allowFullscreen = true;
-            
-            youtubePlayerContainer.innerHTML = '';
-            youtubePlayerContainer.appendChild(iframe);
-            youtubeModal.classList.add('active');
+        function renderTabs(){
+            let visible=SHEET_CONFIG.categories.filter(c=>!SHEET_CONFIG.hiddenCategories.includes(c) && linksData[c]?.length);
+            categoryTabs.innerHTML='';
+            visible.forEach(c=>{
+                let tab=document.createElement('div'); tab.className=`tab ${c===currentCategory?'active':''}`; tab.dataset.category=c;
+                tab.innerHTML=`<i class="${CATEGORY_META[c]?.icon||'fas fa-folder'}"></i><span>${c}</span>`;
+                tab.addEventListener('click',()=>{ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); currentCategory=c; switchCategory(c); });
+                categoryTabs.appendChild(tab);
+            });
         }
-
-        // Close YouTube modal
-        function closeYouTubeModal() {
-            youtubeModal.classList.remove('active');
-            youtubePlayerContainer.innerHTML = '';
+        function renderAllCategoryGrids(){
+            cardsGridContainer.innerHTML='';
+            let visible=SHEET_CONFIG.categories.filter(c=>!SHEET_CONFIG.hiddenCategories.includes(c) && linksData[c]?.length);
+            visible.forEach(cat=>{
+                let gridDiv=document.createElement('div'); gridDiv.className='cards-grid'; gridDiv.id=`grid-${cat.replace(/\s/g,'')}`;
+                cardsGridContainer.appendChild(gridDiv);
+                renderCategoryGrid(gridDiv,cat);
+            });
         }
-
-        // Handle search
-        function handleSearch() {
-            const query = searchInput.value.trim();
-            
-            if (query) {
-                searchClear.style.display = 'block';
-                performSearch(query);
-            } else {
-                searchClear.style.display = 'none';
-                clearSearch();
-            }
+        function renderCategoryGrid(container,category){
+            let items=linksData[category]||[];
+            if(!items.length){ container.innerHTML=`<div class="empty-state"><i class="fas fa-folder-open"></i><p>No resources</p></div>`; return; }
+            let chunks=[]; for(let i=0;i<items.length;i+=5) chunks.push(items.slice(i,i+5));
+            let cardsHtml='<div class="card-collection">';
+            chunks.forEach((chunk,idx)=>{
+                let itemsHtml='';
+                chunk.forEach(item=>{
+                    let ytid=item.type==='link'?extractYouTubeId(item.value):null;
+                    let isYoutube=!!ytid;
+                    let isDrive = item.type==='link' && isDriveLink(item.value);
+                    let isPdf = item.type==='link' && isPdfLink(item.value);
+                    let badge = '';
+                    if(isYoutube) badge = '<span class="video-badge"><i class="fas fa-play"></i> video</span>';
+                    else if(isDrive) badge = '<span class="drive-badge"><i class="fab fa-google-drive"></i> drive</span>';
+                    else if(isPdf) badge = '<span class="pdf-badge"><i class="fas fa-file-pdf"></i> pdf</span>';
+                    itemsHtml+=`<div class="link-item" data-url="${escapeHtml(item.value)}" data-ytid="${ytid||''}" data-type="${item.type}" data-isDrive="${isDrive}" data-isPdf="${isPdf}">
+                        <div class="link-icon"><i class="${isYoutube?'fab fa-youtube':(isDrive?'fab fa-google-drive':(isPdf?'fas fa-file-pdf':'fas fa-external-link-alt'))}"></i></div>
+                        <div class="link-details"><div class="link-title">${escapeHtml(item.title)} ${badge}</div><div class="link-meta">${escapeHtml(item.source)}</div></div>
+                    </div>`;
+                });
+                cardsHtml+=`<div class="resource-card"><div class="card-glow"></div><div class="card-header"><h3><i class="${CATEGORY_META[category]?.icon||'fas fa-th'}"></i> ${category}</h3><div class="card-badge">${idx*5+1}-${Math.min((idx+1)*5,items.length)}</div></div><div class="card-content"><div class="link-list">${itemsHtml}</div></div></div>`;
+            });
+            cardsHtml+='</div>';
+            container.innerHTML=cardsHtml;
         }
+        function switchCategory(category){ document.querySelectorAll('.cards-grid').forEach(g=>g.classList.remove('active')); let target=document.getElementById(`grid-${category.replace(/\s/g,'')}`); if(target) target.classList.add('active'); }
 
-        // Clear search
-        function clearSearch() {
-            searchInput.value = '';
-            searchClear.style.display = 'none';
-            searchResultsCount.textContent = '';
-            
-            // Hide search results grid if exists
-            const searchGrid = document.getElementById('grid-SearchResults');
-            if (searchGrid) {
-                searchGrid.remove();
-            }
-            
-            // Show current category
-            document.querySelectorAll('.cards-grid').forEach(g => g.classList.remove('active'));
-            switchCategory(currentCategory);
-        }
-
-        // Perform search
-        function performSearch(query) {
-            const q = query.toLowerCase();
-            const filtered = allItems.filter(item => 
-                item.title.toLowerCase().includes(q) || 
-                item.value.toLowerCase().includes(q) ||
-                item.category.toLowerCase().includes(q)
-            );
-
-            // Remove existing search grid
-            const existingGrid = document.getElementById('grid-SearchResults');
-            if (existingGrid) existingGrid.remove();
-
-            // Create search results grid
-            const searchGrid = document.createElement('div');
-            searchGrid.className = 'cards-grid active';
-            searchGrid.id = 'grid-SearchResults';
-            searchGrid.dataset.category = 'SearchResults';
+        // Search
+        function performSearch(query){
+            let q=query.trim().toLowerCase();
+            let filtered=allItems.filter(i=> i.title.toLowerCase().includes(q) || i.category.toLowerCase().includes(q) || (i.value && i.value.toLowerCase().includes(q)));
+            let existingGrid=document.getElementById('grid-SearchResults');
+            if(existingGrid) existingGrid.remove();
+            let searchGrid=document.createElement('div'); searchGrid.className='cards-grid active'; searchGrid.id='grid-SearchResults';
             cardsGridContainer.appendChild(searchGrid);
-
-            if (filtered.length === 0) {
-                searchGrid.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search"></i>
-                        <h3 style="margin: 1rem 0;">No results found</h3>
-                        <p style="color: var(--text-secondary);">Try different keywords</p>
-                    </div>
-                `;
-                searchResultsCount.textContent = '0 results';
-            } else {
-                // Group results
-                const itemsPerCard = 5;
-                const chunks = [];
-                for (let i = 0; i < filtered.length; i += itemsPerCard) {
-                    chunks.push(filtered.slice(i, i + itemsPerCard));
-                }
-                
-                let cardsHtml = '';
-                chunks.forEach((chunk, idx) => {
-                    let itemsHtml = '';
-                    chunk.forEach(item => {
-                        const isLink = item.type === 'link';
-                        const ytId = isLink ? extractYouTubeId(item.value) : null;
-                        
-                        itemsHtml += `
-                            <div class="link-item" 
-                                 data-url="${item.value}" 
-                                 data-ytid="${ytId || ''}" 
-                                 data-type="${item.type}">
-                                <div class="link-icon">
-                                    <i class="${isLink ? 'fas fa-external-link-alt' : 'fas fa-database'}"></i>
-                                </div>
-                                <div class="link-details">
-                                    <div class="link-title">${escapeHtml(item.title)}</div>
-                                    <div class="link-meta">${escapeHtml(item.category)} · ${escapeHtml(item.source)}</div>
-                                </div>
-                            </div>`;
-                    });
-                    
-                    cardsHtml += `
-                        <div class="resource-card">
-                            <div class="card-glow"></div>
-                            <div class="card-header">
-                                <h3><i class="fas fa-search"></i> Search Results</h3>
-                                <div class="card-badge">${idx * itemsPerCard + 1}-${Math.min((idx + 1) * itemsPerCard, filtered.length)}</div>
-                            </div>
-                            <div class="card-content">
-                                <div class="link-list">
-                                    ${itemsHtml}
-                                </div>
-                            </div>
+            if(filtered.length===0){ searchGrid.innerHTML=`<div class="empty-state"><i class="fas fa-search"></i><h3>No results</h3></div>`; searchResultsCountSpan.innerText='0 results'; }
+            else{
+                let chunks=[]; for(let i=0;i<filtered.length;i+=5) chunks.push(filtered.slice(i,i+5));
+                let html='<div class="card-collection">';
+                chunks.forEach((chunk,idx)=>{
+                    let itemsHtml='';
+                    chunk.forEach(item=>{
+                        let ytid=item.type==='link'?extractYouTubeId(item.value):null;
+                        let isVideo=!!ytid;
+                        itemsHtml+=`<div class="link-item" data-url="${escapeHtml(item.value)}" data-ytid="${ytid||''}" data-type="${item.type}">
+                            <div class="link-icon"><i class="${isVideo?'fab fa-youtube':'fas fa-link'}"></i></div>
+                            <div class="link-details"><div class="link-title">${escapeHtml(item.title)} ${isVideo?'<span class="video-badge"><i class="fas fa-video"></i> watch</span>':''}</div><div class="link-meta">${escapeHtml(item.category)} · ${escapeHtml(item.source)}</div></div>
                         </div>`;
+                    });
+                    html+=`<div class="resource-card"><div class="card-glow"></div><div class="card-header"><h3><i class="fas fa-search"></i> Search: "${escapeHtml(q)}"</h3><div class="card-badge">${idx*5+1}-${Math.min((idx+1)*5,filtered.length)}</div></div><div class="card-content"><div class="link-list">${itemsHtml}</div></div></div>`;
                 });
-                
-                searchGrid.innerHTML = `<div class="card-collection">${cardsHtml}</div>`;
-                searchResultsCount.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''}`;
+                html+='</div>';
+                searchGrid.innerHTML=html;
+                searchResultsCountSpan.innerText=`${filtered.length} result${filtered.length!==1?'s':''}`;
             }
+            document.querySelectorAll('.cards-grid').forEach(g=>{ if(g.id!=='grid-SearchResults') g.classList.remove('active'); });
+        }
+        function clearSearch(){ searchInput.value=''; searchClearBtn.style.display='none'; searchResultsCountSpan.innerText=''; let sr=document.getElementById('grid-SearchResults'); if(sr) sr.remove(); switchCategory(currentCategory); }
+        function handleSearchInput(){ let val=searchInput.value.trim(); if(val){ searchClearBtn.style.display='block'; performSearch(val); } else clearSearch(); }
 
-            // Hide other categories
-            document.querySelectorAll('.cards-grid').forEach(g => {
-                if (g.id !== 'grid-SearchResults') {
-                    g.classList.remove('active');
-                }
-            });
+        // YouTube Modal (simple embed)
+        let youtubeModalActive = false;
+        function openYouTubeModal(videoId){
+            let modalDiv = document.createElement('div'); modalDiv.className = 'youtube-modal-active'; modalDiv.style.position='fixed'; modalDiv.style.top=0; modalDiv.style.left=0; modalDiv.style.width='100%'; modalDiv.style.height='100%'; modalDiv.style.background='rgba(0,0,0,0.96)'; modalDiv.style.zIndex='3000'; modalDiv.style.display='flex'; modalDiv.style.alignItems='center'; modalDiv.style.justifyContent='center';
+            let inner = `<div style="background:#0a0a0f; width:90%; max-width:1000px; border-radius:24px; overflow:hidden;"><div style="padding:1rem; display:flex; justify-content:space-between; background:#111;"><h3><i class="fab fa-youtube" style="color:red;"></i> YouTube Player</h3><button id="closeYtModalBtn" style="background:none; border:none; color:white; font-size:2rem; cursor:pointer;">&times;</button></div><div><iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1" style="width:100%; height:55vh; border:none;" allowfullscreen></iframe></div></div>`;
+            modalDiv.innerHTML = inner;
+            document.body.appendChild(modalDiv);
+            modalDiv.querySelector('#closeYtModalBtn').onclick = () => modalDiv.remove();
+            modalDiv.onclick = (e) => { if(e.target === modalDiv) modalDiv.remove(); };
         }
 
-        // Helper: map header to category
-        function mapHeaderToCategory(header) {
-            const h = header.toLowerCase().trim();
-            
-            if (h.includes('html')) return 'HTML';
-            if (h.includes('css')) return 'CSS';
-            if (h.includes('js') || h.includes('javascript')) return 'JavaScript';
-            if (h.includes('python')) return 'Python';
-            if (h.includes('skill')) return 'Skills';
-            if (h.includes('book1') || h.includes('book 1')) return 'Book 1';
-            if (h.includes('book2') || h.includes('book 2')) return 'Book 2';
-            if (h.includes('book3') || h.includes('book 3')) return 'Book 3';
-            if (h.includes('book4') || h.includes('book 4')) return 'Book 4';
-            if (h.includes('book5') || h.includes('book 5')) return 'Book 5';
-            if (h.includes('all books')) return 'All Books';
-            if (h.includes('programming')) return 'Programming';
-            if (h.includes('other') || h.includes('tools')) return 'Other Tools';
-            if (h.includes('edit')) return 'Editing';
-            if (h.includes('stock')) return 'Stock Market';
-            if (h.includes('note')) return 'Notes';
-            if (h.includes('referral')) return 'Referral Code';
-            if (h.includes('phone')) return 'Phone Number';
-            if (h.includes('password')) return 'Password';
-            
-            return null;
+        // Global link handler
+        function handleGlobalLinkClick(e){
+            let item=e.target.closest('.link-item');
+            if(!item) return;
+            e.preventDefault();
+            let url=item.dataset.url, ytid=item.dataset.ytid, type=item.dataset.type, isDrive = item.dataset.isdrive === 'true', isPdf = item.dataset.ispdf === 'true';
+            if(type==='link' && ytid && ytid!=='null' && ytid!=='') openYouTubeModal(ytid);
+            else if(type==='link' && (isDrive || isPdf || url.includes('.pdf') || url.includes('drive.google.com'))) openPreview(url, 'Preview');
+            else if(type==='link' && url) window.open(url,'_blank');
+            else if(type==='text') showToast(`📝 Note: ${item.innerText?.slice(0,100)}`, false);
         }
 
-        // Helper: validate URL
-        function isValidUrl(str) {
-            try { 
-                new URL(str); 
-                return true; 
-            } catch { 
-                return false; 
-            }
+        // Suggestion Form to WhatsApp
+        function sendToWhatsApp(){
+            let name = document.getElementById('sugName').value.trim();
+            let phone = document.getElementById('sugPhone').value.trim();
+            let type = document.getElementById('sugType').value;
+            let title = document.getElementById('sugTitle').value.trim();
+            let link = document.getElementById('sugLink').value.trim();
+            if(!name || !title || !link){ showToast("Please fill Name, Title & Link", true); return; }
+            let msg = `🌟 *NEW RESOURCE SUGGESTION* 🌟\n👤 Name: ${name}\n📞 Contact: ${phone || 'N/A'}\n📚 Type: ${type}\n📌 Title: ${title}\n🔗 Link: ${link}\n💎 Bonus Request: ₹50-500 on approval!`;
+            let whatsappUrl = `https://wa.me/+919603003169?text=${encodeURIComponent(msg)}`;
+            window.open(whatsappUrl, '_blank');
+            showToast("✅ Redirecting to WhatsApp! Bonus will be credited on approval.", false);
+            suggestionForm.classList.remove('active');
+            document.getElementById('sugName').value = ''; document.getElementById('sugPhone').value = ''; document.getElementById('sugTitle').value = ''; document.getElementById('sugLink').value = '';
         }
 
-        // Helper: extract source
-        function extractSource(url) {
-            try {
-                const host = new URL(url).hostname;
-                if (host.includes('w3schools')) return 'W3Schools';
-                if (host.includes('geeksforgeeks')) return 'GeeksforGeeks';
-                if (host.includes('mozilla')) return 'MDN';
-                if (host.includes('youtube')) return 'YouTube';
-                if (host.includes('python.org')) return 'Python.org';
-                if (host.includes('analyticsvidhya')) return 'Analytics Vidhya';
-                if (host.includes('drive.google')) return 'Google Drive';
-                if (host.includes('github')) return 'GitHub';
-                return host.replace('www.', '').split('.')[0];
-            } catch {
-                return 'link';
-            }
+        // Auth
+        function handleLogin(){
+            let phone=loginPhone.value.trim(), pass=loginPassword.value;
+            let userData = phonePasswordMap[phone];
+            if(userData && userData.pass === pass){
+                authenticatedUser=phone;
+                displayUserPhoneSpan.innerText=phone.slice(0,3)+'****'+phone.slice(-3);
+                let profileUrl = userData.profilePic;
+                if(profileUrl && isValidUrl(profileUrl)) userAvatarContainer.innerHTML = `<img src="${profileUrl}" class="user-avatar-img" alt="profile">`;
+                else userAvatarContainer.innerHTML = `<div class="user-avatar-placeholder"><i class="fas fa-user"></i></div>`;
+                loginPage.style.display='none'; mainDash.classList.add('authenticated');
+                renderDashboard();
+            } else { loginErrorDiv.style.display='flex'; setTimeout(()=>loginErrorDiv.style.display='none',2000); }
         }
+        function handleLogout(){ authenticatedUser=null; mainDash.classList.remove('authenticated'); loginPage.style.display='flex'; clearSearch(); }
 
-        // Helper: generate display text
-        function generateDisplayText(value) {
-            if (isValidUrl(value)) {
-                try {
-                    const url = new URL(value);
-                    if (url.hostname.includes('youtube')) {
-                        const videoId = url.searchParams.get('v') || url.pathname.split('/').pop();
-                        return `YouTube Video: ${videoId}`;
-                    }
-                    const path = url.pathname.split('/').filter(p => p).pop() || '';
-                    return decodeURIComponent(path.replace(/[-_]/g, ' ')) || url.hostname;
-                } catch {
-                    return value.slice(0, 40);
-                }
-            }
-            return value.length > 40 ? value.slice(0, 40) + '...' : value;
-        }
+        function escapeHtml(str){ if(!str) return ''; return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
 
-        // Helper: escape HTML
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+        // Event binding
+        document.addEventListener('DOMContentLoaded',()=>{
+            loadSheetData();
+            loginBtn.addEventListener('click',handleLogin);
+            logoutBtn.addEventListener('click',handleLogout);
+            searchInput.addEventListener('input',handleSearchInput);
+            searchClearBtn.addEventListener('click',clearSearch);
+            document.body.addEventListener('click',handleGlobalLinkClick);
+            closePreviewBtn.addEventListener('click',()=>{ previewModal.classList.remove('active'); previewIframe.src='about:blank'; });
+            previewModal.addEventListener('click',(e)=>{ if(e.target===previewModal) { previewModal.classList.remove('active'); previewIframe.src='about:blank'; } });
+            suggestionTrigger.addEventListener('click',()=>{ suggestionForm.classList.toggle('active'); });
+            closeFormBtn.addEventListener('click',()=>{ suggestionForm.classList.remove('active'); });
+            submitSuggestion.addEventListener('click',sendToWhatsApp);
+            loginPhone.addEventListener('keypress',e=>{if(e.key==='Enter')handleLogin();});
+            loginPassword.addEventListener('keypress',e=>{if(e.key==='Enter')handleLogin();});
+        });
     </script>
 </body>
 </html>
